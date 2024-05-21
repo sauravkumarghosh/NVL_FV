@@ -1,0 +1,1031 @@
+This program should be regarded as a DEBUGGING aid, not as a 
+certifier of correctness.
+Call with the -l flag or read the license file for terms
+and conditions of use.
+Run this program with "-h" for the list of options.
+
+Bugs, questions, and comments should be directed to
+"melatti@di.uniroma1.it".
+
+CMurphi compiler last modified date: Jan 24 2023
+Include files last modified date:    Jul 23 2021
+==========================================================================
+
+==========================================================================
+Caching Murphi Release 5.5.0
+Finite-state Concurrent System Verifier.
+
+Caching Murphi Release 5.5.0 is based on various versions of Murphi.
+Caching Murphi Release 5.5.0 :
+Copyright (C) 2009-2012 by Sapienza University of Rome.
+Murphi release 3.1 :
+Copyright (C) 1992 - 1999 by the Board of Trustees of
+Leland Stanford Junior University.
+
+==========================================================================
+
+Protocol: NVL_sl8
+
+Algorithm:
+	Verification by breadth first search.
+	with symmetry algorithm 3 -- Heuristic Small Memory Normalization
+	with permutation trial limit 10.
+
+Memory usage:
+
+	* The size of each state is 15312 bits (rounded up to 1920 bytes).
+	* The memory allocated for the hash table and state queue is
+	  62914 Mbytes.
+	  With states hash-compressed to 40 bits, the maximum size of
+	  the state space is 10847337931 states.
+	   * Use option "-k" or "-m" to increase this, if necessary.
+	* Capacity in queue for breadth-first search: 1084733793 states.
+	   * Change the constant gPercentActiveStates in mu_prolog.inc
+	     to increase this, if necessary.
+
+Progress Report:
+
+	10000 states explored in 811.18s, with 5165910 rules fired and 2160 states in the queue.
+	20000 states explored in 1633.65s, with 10554602 rules fired and 3983 states in the queue.
+	30000 states explored in 2423.35s, with 15711219 rules fired and 6159 states in the queue.
+	40000 states explored in 3208.65s, with 20823082 rules fired and 8402 states in the queue.
+	50000 states explored in 4008.89s, with 26062069 rules fired and 10452 states in the queue.
+	60000 states explored in 4825.90s, with 31405986 rules fired and 12342 states in the queue.
+	70000 states explored in 5663.06s, with 36874936 rules fired and 14044 states in the queue.
+	80000 states explored in 6484.93s, with 42237284 rules fired and 15907 states in the queue.
+	90000 states explored in 7302.58s, with 47569256 rules fired and 17816 states in the queue.
+	100000 states explored in 8115.88s, with 52876420 rules fired and 19762 states in the queue.
+	110000 states explored in 8930.20s, with 58190359 rules fired and 21699 states in the queue.
+	120000 states explored in 9791.13s, with 63800426 rules fired and 23186 states in the queue.
+	130000 states explored in 10608.78s, with 69138326 rules fired and 25086 states in the queue.
+	140000 states explored in 11423.26s, with 74454503 rules fired and 27018 states in the queue.
+	150000 states explored in 12307.50s, with 80236563 rules fired and 28244 states in the queue.
+	160000 states explored in 13128.68s, with 85606047 rules fired and 30097 states in the queue.
+	170000 states explored in 13938.24s, with 90892575 rules fired and 32075 states in the queue.
+	180000 states explored in 14805.77s, with 96559975 rules fired and 33475 states in the queue.
+	190000 states explored in 15673.44s, with 102240555 rules fired and 34855 states in the queue.
+	200000 states explored in 16518.32s, with 107784070 rules fired and 36442 states in the queue.
+	210000 states explored in 17335.78s, with 113129209 rules fired and 38332 states in the queue.
+	220000 states explored in 18233.02s, with 118992091 rules fired and 39435 states in the queue.
+	230000 states explored in 19124.23s, with 124809328 rules fired and 40608 states in the queue.
+	240000 states explored in 20008.58s, with 130574919 rules fired and 41859 states in the queue.
+	250000 states explored in 20879.37s, with 136272686 rules fired and 43212 states in the queue.
+	260000 states explored in 21822.05s, with 142448122 rules fired and 43842 states in the queue.
+	270000 states explored in 22645.15s, with 147853899 rules fired and 45639 states in the queue.
+	280000 states explored in 23480.23s, with 153330848 rules fired and 47328 states in the queue.
+	290000 states explored in 24461.00s, with 159744892 rules fired and 47595 states in the queue.
+	300000 states explored in 25347.31s, with 165538254 rules fired and 48803 states in the queue.
+	310000 states explored in 26304.67s, with 171798002 rules fired and 49305 states in the queue.
+	320000 states explored in 27121.25s, with 177129944 rules fired and 51214 states in the queue.
+	330000 states explored in 27964.47s, with 182639873 rules fired and 52853 states in the queue.
+	340000 states explored in 28915.13s, with 188855799 rules fired and 53420 states in the queue.
+	350000 states explored in 29806.10s, with 194698845 rules fired and 54554 states in the queue.
+	360000 states explored in 30789.90s, with 201145911 rules fired and 54771 states in the queue.
+	370000 states explored in 31696.56s, with 207050551 rules fired and 55811 states in the queue.
+	380000 states explored in 32592.69s, with 212905815 rules fired and 56925 states in the queue.
+	390000 states explored in 33460.76s, with 218580415 rules fired and 58315 states in the queue.
+	400000 states explored in 34409.78s, with 224782264 rules fired and 58904 states in the queue.
+	410000 states explored in 35317.83s, with 230705288 rules fired and 59916 states in the queue.
+	420000 states explored in 36285.14s, with 237029779 rules fired and 60319 states in the queue.
+	430000 states explored in 37255.70s, with 243381880 rules fired and 60680 states in the queue.
+	440000 states explored in 38259.70s, with 249932397 rules fired and 60739 states in the queue.
+	450000 states explored in 39168.92s, with 255883130 rules fired and 61709 states in the queue.
+	460000 states explored in 40099.19s, with 261976156 rules fired and 62464 states in the queue.
+	470000 states explored in 41064.49s, with 268277600 rules fired and 62901 states in the queue.
+	480000 states explored in 41933.70s, with 273966729 rules fired and 64269 states in the queue.
+	490000 states explored in 42871.53s, with 280082908 rules fired and 64988 states in the queue.
+	500000 states explored in 43903.43s, with 286845566 rules fired and 64726 states in the queue.
+	510000 states explored in 45019.06s, with 294141355 rules fired and 63655 states in the queue.
+	520000 states explored in 45816.49s, with 299364616 rules fired and 65728 states in the queue.
+	530000 states explored in 46756.07s, with 305534082 rules fired and 66367 states in the queue.
+	540000 states explored in 47713.52s, with 311819030 rules fired and 66830 states in the queue.
+	550000 states explored in 48635.56s, with 317839655 rules fired and 67693 states in the queue.
+	560000 states explored in 49485.35s, with 323406821 rules fired and 69246 states in the queue.
+	570000 states explored in 50618.46s, with 330816023 rules fired and 68003 states in the queue.
+	580000 states explored in 51627.93s, with 337439698 rules fired and 67951 states in the queue.
+	590000 states explored in 52565.22s, with 343567428 rules fired and 68653 states in the queue.
+	600000 states explored in 53395.98s, with 349008377 rules fired and 70397 states in the queue.
+	610000 states explored in 54391.68s, with 355538457 rules fired and 70487 states in the queue.
+	620000 states explored in 55342.43s, with 361764020 rules fired and 71040 states in the queue.
+	630000 states explored in 56234.98s, with 367612646 rules fired and 72165 states in the queue.
+	640000 states explored in 57211.94s, with 374000382 rules fired and 72472 states in the queue.
+	650000 states explored in 58335.69s, with 381357365 rules fired and 71309 states in the queue.
+	660000 states explored in 59297.55s, with 387638957 rules fired and 71777 states in the queue.
+	670000 states explored in 60168.95s, with 393336036 rules fired and 73131 states in the queue.
+	680000 states explored in 61209.44s, with 400136233 rules fired and 72813 states in the queue.
+	690000 states explored in 62157.25s, with 406328197 rules fired and 73417 states in the queue.
+	700000 states explored in 63065.81s, with 412265542 rules fired and 74407 states in the queue.
+	710000 states explored in 64121.29s, with 419147065 rules fired and 73965 states in the queue.
+	720000 states explored in 65258.40s, with 426561474 rules fired and 72714 states in the queue.
+	730000 states explored in 66197.54s, with 432713833 rules fired and 73378 states in the queue.
+	740000 states explored in 67143.26s, with 438886751 rules fired and 74011 states in the queue.
+	750000 states explored in 68128.05s, with 445348240 rules fired and 74206 states in the queue.
+	760000 states explored in 69124.66s, with 451874078 rules fired and 74303 states in the queue.
+	770000 states explored in 70053.50s, with 457959548 rules fired and 75068 states in the queue.
+	780000 states explored in 71113.88s, with 464916610 rules fired and 74511 states in the queue.
+	790000 states explored in 72096.72s, with 471349091 rules fired and 74751 states in the queue.
+	800000 states explored in 73060.28s, with 477676150 rules fired and 75150 states in the queue.
+	810000 states explored in 74077.22s, with 484349900 rules fired and 75022 states in the queue.
+	820000 states explored in 74986.01s, with 490323650 rules fired and 75958 states in the queue.
+	830000 states explored in 76013.58s, with 497046133 rules fired and 75757 states in the queue.
+	840000 states explored in 76982.36s, with 503399556 rules fired and 76116 states in the queue.
+	850000 states explored in 77918.63s, with 509524961 rules fired and 76821 states in the queue.
+	860000 states explored in 78985.79s, with 516494564 rules fired and 76244 states in the queue.
+	870000 states explored in 79997.41s, with 523119472 rules fired and 76192 states in the queue.
+	880000 states explored in 80923.27s, with 529167774 rules fired and 77014 states in the queue.
+	890000 states explored in 81855.22s, with 535260279 rules fired and 77768 states in the queue.
+	900000 states explored in 82811.39s, with 541536546 rules fired and 78244 states in the queue.
+	910000 states explored in 83767.24s, with 547819451 rules fired and 78711 states in the queue.
+	920000 states explored in 84730.36s, with 554107013 rules fired and 79169 states in the queue.
+	930000 states explored in 85689.03s, with 560382627 rules fired and 79647 states in the queue.
+	940000 states explored in 86801.12s, with 567691635 rules fired and 78555 states in the queue.
+	950000 states explored in 87852.19s, with 574600552 rules fired and 78072 states in the queue.
+	960000 states explored in 88729.91s, with 580343078 rules fired and 79358 states in the queue.
+	970000 states explored in 89643.76s, with 586348595 rules fired and 80244 states in the queue.
+	980000 states explored in 90584.65s, with 592504317 rules fired and 80903 states in the queue.
+	990000 states explored in 91550.81s, with 598839249 rules fired and 81290 states in the queue.
+	1000000 states explored in 92452.03s, with 604726737 rules fired and 82357 states in the queue.
+	1010000 states explored in 93340.72s, with 610530520 rules fired and 83550 states in the queue.
+	1020000 states explored in 94449.11s, with 617784163 rules fired and 82543 states in the queue.
+	1030000 states explored in 95635.18s, with 625518846 rules fired and 80806 states in the queue.
+	1040000 states explored in 96483.40s, with 631061691 rules fired and 82395 states in the queue.
+	1050000 states explored in 97452.92s, with 637405888 rules fired and 82768 states in the queue.
+	1060000 states explored in 98323.24s, with 643099028 rules fired and 84128 states in the queue.
+	1070000 states explored in 99402.69s, with 650148312 rules fired and 83432 states in the queue.
+	1080000 states explored in 100259.02s, with 655752506 rules fired and 84927 states in the queue.
+	1090000 states explored in 101220.59s, with 662023492 rules fired and 85412 states in the queue.
+	1100000 states explored in 102155.30s, with 668144284 rules fired and 86124 states in the queue.
+	1110000 states explored in 103314.83s, with 675745190 rules fired and 84590 states in the queue.
+	1120000 states explored in 104240.41s, with 681791573 rules fired and 85414 states in the queue.
+	1130000 states explored in 105274.52s, with 688542308 rules fired and 85171 states in the queue.
+	1140000 states explored in 106187.61s, with 694517465 rules fired and 86103 states in the queue.
+	1150000 states explored in 107075.56s, with 700316671 rules fired and 87303 states in the queue.
+	1160000 states explored in 108031.72s, with 706565957 rules fired and 87821 states in the queue.
+	1170000 states explored in 108969.88s, with 712709818 rules fired and 88498 states in the queue.
+	1180000 states explored in 109977.90s, with 719264888 rules fired and 88551 states in the queue.
+	1190000 states explored in 110914.28s, with 725378431 rules fired and 89274 states in the queue.
+	1200000 states explored in 111972.49s, with 732284748 rules fired and 88794 states in the queue.
+	1210000 states explored in 112834.03s, with 737932393 rules fired and 90223 states in the queue.
+	1220000 states explored in 113943.94s, with 745174135 rules fired and 89235 states in the queue.
+	1230000 states explored in 114825.12s, with 750931159 rules fired and 90499 states in the queue.
+	1240000 states explored in 115688.80s, with 756572199 rules fired and 91939 states in the queue.
+	1250000 states explored in 116673.00s, with 762997449 rules fired and 92189 states in the queue.
+	1260000 states explored in 117603.42s, with 769068223 rules fired and 92976 states in the queue.
+	1270000 states explored in 118649.97s, with 775896317 rules fired and 92615 states in the queue.
+	1280000 states explored in 119530.14s, with 781653739 rules fired and 93879 states in the queue.
+	1290000 states explored in 120546.80s, with 788302390 rules fired and 93790 states in the queue.
+	1300000 states explored in 121528.13s, with 794722375 rules fired and 94047 states in the queue.
+	1310000 states explored in 122480.75s, with 800953803 rules fired and 94592 states in the queue.
+	1320000 states explored in 123496.07s, with 807590002 rules fired and 94522 states in the queue.
+	1330000 states explored in 124356.61s, with 813210545 rules fired and 95993 states in the queue.
+	1340000 states explored in 125367.10s, with 819823019 rules fired and 95959 states in the queue.
+	1350000 states explored in 126322.60s, with 826057159 rules fired and 96499 states in the queue.
+	1360000 states explored in 127284.94s, with 832350627 rules fired and 96948 states in the queue.
+	1370000 states explored in 128294.77s, with 838952471 rules fired and 96931 states in the queue.
+	1380000 states explored in 129272.49s, with 845346089 rules fired and 97229 states in the queue.
+	1390000 states explored in 130284.00s, with 851948582 rules fired and 97210 states in the queue.
+	1400000 states explored in 131347.27s, with 858885993 rules fired and 96682 states in the queue.
+	1410000 states explored in 132345.66s, with 865404069 rules fired and 96792 states in the queue.
+	1420000 states explored in 133281.53s, with 871480711 rules fired and 97571 states in the queue.
+	1430000 states explored in 134127.46s, with 876972817 rules fired and 99237 states in the queue.
+	1440000 states explored in 135152.64s, with 883659625 rules fired and 99090 states in the queue.
+	1450000 states explored in 136221.42s, with 890657213 rules fired and 98471 states in the queue.
+	1460000 states explored in 137199.64s, with 897024869 rules fired and 98809 states in the queue.
+	1470000 states explored in 138112.13s, with 902971655 rules fired and 99785 states in the queue.
+	1480000 states explored in 139100.81s, with 909391683 rules fired and 100042 states in the queue.
+	1490000 states explored in 140234.49s, with 916781689 rules fired and 98829 states in the queue.
+	1500000 states explored in 141292.35s, with 923703825 rules fired and 98325 states in the queue.
+	1510000 states explored in 142277.19s, with 930118525 rules fired and 98591 states in the queue.
+	1520000 states explored in 143194.84s, with 936088412 rules fired and 99532 states in the queue.
+	1530000 states explored in 144052.00s, with 941674755 rules fired and 101055 states in the queue.
+	1540000 states explored in 145133.34s, with 948726055 rules fired and 100355 states in the queue.
+	1550000 states explored in 146233.06s, with 955886090 rules fired and 99490 states in the queue.
+	1560000 states explored in 147181.85s, with 962075418 rules fired and 100098 states in the queue.
+	1570000 states explored in 148097.72s, with 968054525 rules fired and 101025 states in the queue.
+	1580000 states explored in 149085.29s, with 974506135 rules fired and 101235 states in the queue.
+	1590000 states explored in 150365.66s, with 982864239 rules fired and 98551 states in the queue.
+	1600000 states explored in 151344.77s, with 989269053 rules fired and 98833 states in the queue.
+	1610000 states explored in 152303.54s, with 995551953 rules fired and 99299 states in the queue.
+	1620000 states explored in 153235.81s, with 1001651600 rules fired and 100043 states in the queue.
+	1630000 states explored in 154163.00s, with 1007707873 rules fired and 100853 states in the queue.
+	1640000 states explored in 155265.93s, with 1014901454 rules fired and 99937 states in the queue.
+	1650000 states explored in 156317.05s, with 1021787436 rules fired and 99487 states in the queue.
+	1660000 states explored in 157259.35s, with 1027935219 rules fired and 100159 states in the queue.
+	1670000 states explored in 158196.05s, with 1034037559 rules fired and 100899 states in the queue.
+	1680000 states explored in 159249.84s, with 1040901044 rules fired and 100484 states in the queue.
+	1690000 states explored in 160558.92s, with 1049427818 rules fired and 97545 states in the queue.
+	1700000 states explored in 161516.23s, with 1055675825 rules fired and 98063 states in the queue.
+	1710000 states explored in 162512.46s, with 1062170287 rules fired and 98208 states in the queue.
+	1720000 states explored in 163420.02s, with 1068084818 rules fired and 99233 states in the queue.
+	1730000 states explored in 164433.33s, with 1074693905 rules fired and 99205 states in the queue.
+	1740000 states explored in 165468.54s, with 1081431100 rules fired and 98981 states in the queue.
+	1750000 states explored in 166498.26s, with 1088137560 rules fired and 98804 states in the queue.
+	1760000 states explored in 167455.88s, with 1094384166 rules fired and 99326 states in the queue.
+	1770000 states explored in 168373.64s, with 1100408020 rules fired and 100185 states in the queue.
+	1780000 states explored in 169484.92s, with 1107742805 rules fired and 99054 states in the queue.
+	1790000 states explored in 170734.15s, with 1115862294 rules fired and 96734 states in the queue.
+	1800000 states explored in 171627.07s, with 1121682582 rules fired and 97902 states in the queue.
+	1810000 states explored in 172678.22s, with 1128551339 rules fired and 97479 states in the queue.
+	1820000 states explored in 173571.83s, with 1134376240 rules fired and 98640 states in the queue.
+	1830000 states explored in 174615.76s, with 1141185028 rules fired and 98308 states in the queue.
+	1840000 states explored in 175596.16s, with 1147585913 rules fired and 98594 states in the queue.
+	1850000 states explored in 176670.80s, with 1154564705 rules fired and 98005 states in the queue.
+	1860000 states explored in 177595.58s, with 1160591260 rules fired and 98860 states in the queue.
+	1870000 states explored in 178461.08s, with 1166229001 rules fired and 100305 states in the queue.
+	1880000 states explored in 179557.39s, with 1173362680 rules fired and 99480 states in the queue.
+	1890000 states explored in 180726.95s, with 1181004440 rules fired and 97884 states in the queue.
+	1900000 states explored in 181638.25s, with 1186938739 rules fired and 98879 states in the queue.
+	1910000 states explored in 182743.07s, with 1194132383 rules fired and 97963 states in the queue.
+	1920000 states explored in 183651.12s, with 1200042985 rules fired and 98993 states in the queue.
+	1930000 states explored in 184665.46s, with 1206650088 rules fired and 98968 states in the queue.
+	1940000 states explored in 185662.24s, with 1213150464 rules fired and 99104 states in the queue.
+	1950000 states explored in 186731.45s, with 1220108117 rules fired and 98546 states in the queue.
+	1960000 states explored in 187717.30s, with 1226543987 rules fired and 98779 states in the queue.
+	1970000 states explored in 188571.50s, with 1232124392 rules fired and 100312 states in the queue.
+	1980000 states explored in 189618.75s, with 1238960461 rules fired and 99938 states in the queue.
+	1990000 states explored in 190764.08s, with 1246453029 rules fired and 98569 states in the queue.
+	2000000 states explored in 191688.20s, with 1252484197 rules fired and 99417 states in the queue.
+	2010000 states explored in 192842.33s, with 1260015905 rules fired and 97988 states in the queue.
+	2020000 states explored in 193786.33s, with 1266167037 rules fired and 98653 states in the queue.
+	2030000 states explored in 194826.02s, with 1272950760 rules fired and 98360 states in the queue.
+	2040000 states explored in 195942.73s, with 1280236005 rules fired and 97305 states in the queue.
+	2050000 states explored in 196945.22s, with 1286769745 rules fired and 97390 states in the queue.
+	2060000 states explored in 198007.88s, with 1293692782 rules fired and 96885 states in the queue.
+	2070000 states explored in 198960.31s, with 1299919704 rules fired and 97435 states in the queue.
+	2080000 states explored in 200050.22s, with 1307043460 rules fired and 96626 states in the queue.
+	2090000 states explored in 201144.15s, with 1314182431 rules fired and 95792 states in the queue.
+	2100000 states explored in 202209.97s, with 1321107844 rules fired and 95284 states in the queue.
+	2110000 states explored in 203300.35s, with 1328230947 rules fired and 94475 states in the queue.
+	2120000 states explored in 204376.74s, with 1335253334 rules fired and 93818 states in the queue.
+	2130000 states explored in 205456.20s, with 1342293383 rules fired and 93135 states in the queue.
+	2140000 states explored in 206564.34s, with 1349497584 rules fired and 92203 states in the queue.
+	2150000 states explored in 207570.36s, with 1356039458 rules fired and 92276 states in the queue.
+	2160000 states explored in 208596.77s, with 1362729625 rules fired and 92125 states in the queue.
+	2170000 states explored in 209818.89s, with 1370700889 rules fired and 90029 states in the queue.
+	2180000 states explored in 210915.53s, with 1377858288 rules fired and 89168 states in the queue.
+	2190000 states explored in 211979.21s, with 1384798876 rules fired and 88636 states in the queue.
+	2200000 states explored in 213088.22s, with 1392030110 rules fired and 87662 states in the queue.
+	2210000 states explored in 214221.71s, with 1399422086 rules fired and 86446 states in the queue.
+	2220000 states explored in 215329.59s, with 1406664433 rules fired and 85456 states in the queue.
+	2230000 states explored in 216342.16s, with 1413267673 rules fired and 85436 states in the queue.
+	2240000 states explored in 217396.45s, with 1420127204 rules fired and 85027 states in the queue.
+	2250000 states explored in 218556.56s, with 1427688573 rules fired and 83553 states in the queue.
+	2260000 states explored in 219690.34s, with 1435077993 rules fired and 82339 states in the queue.
+	2270000 states explored in 220812.51s, with 1442391522 rules fired and 81242 states in the queue.
+	2280000 states explored in 221903.20s, with 1449500155 rules fired and 80455 states in the queue.
+	2290000 states explored in 223031.22s, with 1456883610 rules fired and 79250 states in the queue.
+	2300000 states explored in 224136.65s, with 1464087775 rules fired and 78319 states in the queue.
+	2310000 states explored in 225158.52s, with 1470771329 rules fired and 78177 states in the queue.
+	2320000 states explored in 226216.65s, with 1477665156 rules fired and 77716 states in the queue.
+	2330000 states explored in 227442.68s, with 1485680626 rules fired and 75552 states in the queue.
+	2340000 states explored in 228481.26s, with 1492459113 rules fired and 75266 states in the queue.
+	2350000 states explored in 229694.68s, with 1500384840 rules fired and 73240 states in the queue.
+	2360000 states explored in 230880.91s, with 1508118228 rules fired and 71504 states in the queue.
+	2370000 states explored in 231993.58s, with 1515390866 rules fired and 70469 states in the queue.
+	2380000 states explored in 233024.62s, with 1522100867 rules fired and 70287 states in the queue.
+	2390000 states explored in 234163.56s, with 1529535046 rules fired and 69006 states in the queue.
+	2400000 states explored in 235399.90s, with 1537598570 rules fired and 66770 states in the queue.
+	2410000 states explored in 236471.88s, with 1544578698 rules fired and 66178 states in the queue.
+	2420000 states explored in 237733.33s, with 1552802359 rules fired and 63699 states in the queue.
+	2430000 states explored in 238919.00s, with 1560529134 rules fired and 61974 states in the queue.
+	2440000 states explored in 239910.21s, with 1566993974 rules fired and 62163 states in the queue.
+	2450000 states explored in 241119.78s, with 1574879573 rules fired and 60197 states in the queue.
+	2460000 states explored in 242347.12s, with 1582875824 rules fired and 58064 states in the queue.
+	2470000 states explored in 243498.95s, with 1590379198 rules fired and 56678 states in the queue.
+	2480000 states explored in 244710.38s, with 1598279967 rules fired and 54688 states in the queue.
+	2490000 states explored in 245794.12s, with 1605377375 rules fired and 53919 states in the queue.
+	2500000 states explored in 246934.82s, with 1612824079 rules fired and 52619 states in the queue.
+	2510000 states explored in 248157.89s, with 1620796658 rules fired and 50521 states in the queue.
+	2520000 states explored in 249268.93s, with 1628055546 rules fired and 49506 states in the queue.
+	2530000 states explored in 250404.77s, with 1635473268 rules fired and 48249 states in the queue.
+	2540000 states explored in 251475.53s, with 1642486987 rules fired and 47607 states in the queue.
+	2550000 states explored in 252661.92s, with 1650255956 rules fired and 45817 states in the queue.
+	2560000 states explored in 253711.82s, with 1657142091 rules fired and 45368 states in the queue.
+	2570000 states explored in 254778.17s, with 1664113390 rules fired and 44790 states in the queue.
+	2580000 states explored in 255834.49s, with 1670983465 rules fired and 44365 states in the queue.
+	2590000 states explored in 256908.74s, with 1678009064 rules fired and 43704 states in the queue.
+	2600000 states explored in 258010.82s, with 1685202045 rules fired and 42789 states in the queue.
+	2610000 states explored in 259016.11s, with 1691756463 rules fired and 42843 states in the queue.
+	2620000 states explored in 260076.15s, with 1698666835 rules fired and 42356 states in the queue.
+	2630000 states explored in 261128.80s, with 1705553946 rules fired and 41906 states in the queue.
+	2640000 states explored in 262181.66s, with 1712436542 rules fired and 41462 states in the queue.
+	2650000 states explored in 263285.51s, with 1719648569 rules fired and 40518 states in the queue.
+	2660000 states explored in 264327.10s, with 1726452813 rules fired and 40193 states in the queue.
+	2670000 states explored in 265435.10s, with 1733697201 rules fired and 39199 states in the queue.
+	2680000 states explored in 266483.76s, with 1740571229 rules fired and 38769 states in the queue.
+	2690000 states explored in 267548.56s, with 1747541472 rules fired and 38192 states in the queue.
+	2700000 states explored in 268548.05s, with 1754058979 rules fired and 38302 states in the queue.
+	2710000 states explored in 269637.99s, with 1761151795 rules fired and 37539 states in the queue.
+	2720000 states explored in 270607.29s, with 1767482153 rules fired and 37933 states in the queue.
+	2730000 states explored in 271664.83s, with 1774377929 rules fired and 37469 states in the queue.
+	2740000 states explored in 272650.91s, with 1780809047 rules fired and 37710 states in the queue.
+	2750000 states explored in 273653.43s, with 1787356934 rules fired and 37774 states in the queue.
+	2760000 states explored in 274589.83s, with 1793468500 rules fired and 38500 states in the queue.
+	2770000 states explored in 275664.66s, with 1800482896 rules fired and 37856 states in the queue.
+	2780000 states explored in 276614.69s, with 1806685411 rules fired and 38443 states in the queue.
+	2790000 states explored in 277592.15s, with 1813051341 rules fired and 38784 states in the queue.
+	2800000 states explored in 278620.92s, with 1819790934 rules fired and 38557 states in the queue.
+	2810000 states explored in 279728.92s, with 1827026727 rules fired and 37577 states in the queue.
+	2820000 states explored in 280763.93s, with 1833787435 rules fired and 37318 states in the queue.
+	2830000 states explored in 281835.21s, with 1840792658 rules fired and 36687 states in the queue.
+	2840000 states explored in 282920.49s, with 1847882219 rules fired and 35929 states in the queue.
+	2850000 states explored in 284087.23s, with 1855490172 rules fired and 34385 states in the queue.
+	2860000 states explored in 285180.06s, with 1862640849 rules fired and 33534 states in the queue.
+	2870000 states explored in 286342.76s, with 1870221571 rules fired and 32031 states in the queue.
+	2880000 states explored in 287488.22s, with 1877684142 rules fired and 30706 states in the queue.
+	2890000 states explored in 288563.34s, with 1884718912 rules fired and 30032 states in the queue.
+	2900000 states explored in 289702.08s, with 1892154344 rules fired and 28749 states in the queue.
+	2910000 states explored in 290789.45s, with 1899234724 rules fired and 28004 states in the queue.
+	2920000 states explored in 291943.93s, with 1906770425 rules fired and 26569 states in the queue.
+	2930000 states explored in 293045.62s, with 1913983784 rules fired and 25624 states in the queue.
+	2940000 states explored in 294195.15s, with 1921462772 rules fired and 24275 states in the queue.
+	2950000 states explored in 295358.00s, with 1929043911 rules fired and 22771 states in the queue.
+	2960000 states explored in 296525.26s, with 1936669200 rules fired and 21200 states in the queue.
+	2970000 states explored in 297717.19s, with 1944475714 rules fired and 19354 states in the queue.
+	2980000 states explored in 298962.73s, with 1952599207 rules fired and 17027 states in the queue.
+	2990000 states explored in 300188.34s, with 1960580356 rules fired and 14916 states in the queue.
+	3000000 states explored in 301422.15s, with 1968621474 rules fired and 12714 states in the queue.
+	3010000 states explored in 302637.39s, with 1976569014 rules fired and 10654 states in the queue.
+	3020000 states explored in 303896.95s, with 1984798606 rules fired and 8166 states in the queue.
+	3030000 states explored in 305197.53s, with 1993279309 rules fired and 5296 states in the queue.
+	3040000 states explored in 306305.36s, with 2000540189 rules fired and 4278 states in the queue.
+	3050000 states explored in 307436.56s, with 2007928212 rules fired and 3067 states in the queue.
+	3060000 states explored in 308604.72s, with 2015558749 rules fired and 1489 states in the queue.
+
+==========================================================================
+
+Status:
+
+	No error found.
+
+State Space Explored:
+
+	3063036 states, 2018540724 rules fired in 309061.15s.
+
+Omission Probabilities (caused by Hash Compaction):
+
+	Pr[even one omitted state]    <= 0.000000
+	Pr[even one undetected error] <= 0.000000
+	Diameter of reachability graph: 96
+
+Rules Information:
+
+	Fired 3063036 times	- Rule "hbo_mufasa_early_read, htid:0"
+	Fired 3063036 times	- Rule "hbo_mufasa_early_read, htid:1"
+	Fired 3063036 times	- Rule "hbo_send_parallel_mem_read_request, htid:0"
+	Fired 3063036 times	- Rule "hbo_send_parallel_mem_read_request, htid:1"
+	Fired 3063036 times	- Rule "hbo_send_fastgo_response_to_idicagent, htid:0"
+	Fired 3063036 times	- Rule "hbo_send_fastgo_response_to_idicagent, htid:1"
+	Fired 3063036 times	- Rule "move_to_memory_domain, htid:0"
+	Fired 3063036 times	- Rule "move_to_memory_domain, htid:1"
+	Fired 3063036 times	- Rule "hbo_recv_memory_response, mctid:0"
+	Fired 3063036 times	- Rule "hbo_send_memory_request, htid:0"
+	Fired 3063036 times	- Rule "hbo_send_memory_request, htid:1"
+	Fired 3063036 times	- Rule "idicagent_send_ack_response, agent:0, rtid:0"
+	Fired 3063036 times	- Rule "idicagent_send_ack_response, agent:1, rtid:0"
+	Fired 3063036 times	- Rule "idicagent_send_ack_response, agent:2, rtid:0"
+	Fired 3063036 times	- Rule "hbo_send_response_for_ClrMonitor, htid:0"
+	Fired 3063036 times	- Rule "hbo_send_response_for_ClrMonitor, htid:1"
+	Fired 3063036 times	- Rule "hbo_send_fwd_response, htid:0"
+	Fired 3063036 times	- Rule "hbo_send_fwd_response, htid:1"
+	Fired 3063036 times	- Rule "ulink_send_CAWb_packet, agent:0, index:0"
+	Fired 3063036 times	- Rule "ulink_send_CAWb_packet, agent:1, index:0"
+	Fired 3063036 times	- Rule "ulink_send_CAWb_packet, agent:2, index:0"
+	Fired 3063036 times	- Rule "ulink_send_CAWb_packet, agent:3, index:0"
+	Fired 3063036 times	- Rule "ca_request_fwd_conflict, agent:0, address:0"
+	Fired 3063036 times	- Rule "ca_request_fwd_conflict, agent:1, address:0"
+	Fired 3063036 times	- Rule "ca_request_fwd_conflict, agent:2, address:0"
+	Fired 3063036 times	- Rule "ca_request_fwd_conflict, agent:3, address:0"
+	Fired 3063036 times	- Rule "downgrade_cacheline, agent:0, address:0, cacheOp:CacheOp__ToI"
+	Fired 3063036 times	- Rule "downgrade_cacheline, agent:1, address:0, cacheOp:CacheOp__ToI"
+	Fired 3063036 times	- Rule "downgrade_cacheline, agent:2, address:0, cacheOp:CacheOp__ToI"
+	Fired 3063036 times	- Rule "downgrade_cacheline, agent:3, address:0, cacheOp:CacheOp__ToI"
+	Fired 3063036 times	- Rule "downgrade_cacheline, agent:0, address:0, cacheOp:CacheOp__ToS"
+	Fired 3063036 times	- Rule "downgrade_cacheline, agent:1, address:0, cacheOp:CacheOp__ToS"
+	Fired 3063036 times	- Rule "downgrade_cacheline, agent:2, address:0, cacheOp:CacheOp__ToS"
+	Fired 3063036 times	- Rule "downgrade_cacheline, agent:3, address:0, cacheOp:CacheOp__ToS"
+	Fired 3063036 times	- Rule "downgrade_cacheline, agent:0, address:0, cacheOp:CacheOp__ToEmptyE"
+	Fired 3063036 times	- Rule "downgrade_cacheline, agent:1, address:0, cacheOp:CacheOp__ToEmptyE"
+	Fired 3063036 times	- Rule "downgrade_cacheline, agent:2, address:0, cacheOp:CacheOp__ToEmptyE"
+	Fired 3063036 times	- Rule "downgrade_cacheline, agent:3, address:0, cacheOp:CacheOp__ToEmptyE"
+	Fired 3063036 times	- Rule "upiagent_modify_cacheline, agent:0, address:0, word:0, data:0"
+	Fired 3063036 times	- Rule "upiagent_modify_cacheline, agent:1, address:0, word:0, data:0"
+	Fired 3063036 times	- Rule "upiagent_modify_cacheline, agent:2, address:0, word:0, data:0"
+	Fired 3063036 times	- Rule "upiagent_modify_cacheline, agent:3, address:0, word:0, data:0"
+	Fired 3063036 times	- Rule "hbo_release_tractor_uentry, htid:0"
+	Fired 3063036 times	- Rule "hbo_release_tractor_uentry, htid:1"
+	Fired 3063036 times	- Rule "ulink_send_MCResp_packet, agent:0, index:0"
+	Fired 3063036 times	- Rule "ulink_send_MCResp_packet, agent:1, index:0"
+	Fired 3063036 times	- Rule "ulink_send_MCResp_packet, agent:2, index:0"
+	Fired 3063036 times	- Rule "ulink_send_MCResp_packet, agent:3, index:0"
+	Fired 3063036 times	- Rule "ulink_send_HAResp_packet, agent:0, index:0"
+	Fired 3063036 times	- Rule "ulink_send_HAResp_packet, agent:1, index:0"
+	Fired 3063036 times	- Rule "ulink_send_HAResp_packet, agent:2, index:0"
+	Fired 3063036 times	- Rule "ulink_send_HAResp_packet, agent:3, index:0"
+	Fired 3063036 times	- Rule "hbo_send_data_to_upiagent, htid:0"
+	Fired 3063036 times	- Rule "hbo_send_data_to_upiagent, htid:1"
+	Fired 3063036 times	- Rule "hbo_send_response_to_upiagent, htid:0"
+	Fired 3063036 times	- Rule "hbo_send_response_to_upiagent, htid:1"
+	Fired 3063036 times	- Rule "ulink_send_CAReq_packet, agent:0, index:0"
+	Fired 3063036 times	- Rule "ulink_send_CAReq_packet, agent:1, index:0"
+	Fired 3063036 times	- Rule "ulink_send_CAReq_packet, agent:2, index:0"
+	Fired 3063036 times	- Rule "ulink_send_CAReq_packet, agent:3, index:0"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__RdCode, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__RdCode, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__RdCode, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__RdCode, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__RdData, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__RdData, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__RdData, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__RdData, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__ReqFwdCnflt, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__ReqFwdCnflt, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__ReqFwdCnflt, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__ReqFwdCnflt, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__RdDataMig, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__RdDataMig, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__RdDataMig, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__RdDataMig, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__RdInvOwn, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__RdInvOwn, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__RdInvOwn, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__RdInvOwn, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__InvXtoI, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__InvXtoI, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__InvXtoI, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__InvXtoI, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__InvItoE, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__InvItoE, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__InvItoE, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__InvItoE, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__RdInv, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__RdInv, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__RdInv, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__RdInv, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__InvItoM, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__InvItoM, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__InvItoM, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__InvItoM, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__WbMtoI, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__WbMtoI, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__WbMtoI, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__WbMtoI, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__WbMtoS, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__WbMtoS, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__WbMtoS, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__WbMtoS, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__WbMtoE, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__WbMtoE, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__WbMtoE, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__WbMtoE, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__WbEtoI, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__WbEtoI, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__WbEtoI, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__WbEtoI, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__RdCur, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__RdCur, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__RdCur, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__RdCur, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__WbMtoIPtl, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__WbMtoIPtl, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__WbMtoIPtl, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__WbMtoIPtl, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__WbMtoEPtl, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__WbMtoEPtl, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__WbMtoEPtl, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__WbMtoEPtl, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__SI_CmpO, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__SI_CmpO, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__SI_CmpO, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__SI_CmpO, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__E_CmpO, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__E_CmpO, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__E_CmpO, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__E_CmpO, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__FwdCnfltO, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__FwdCnfltO, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__FwdCnfltO, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__FwdCnfltO, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__Data_M, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__Data_M, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__Data_M, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__Data_M, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__M_CmpO, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__M_CmpO, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__M_CmpO, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__M_CmpO, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__CmpU, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__CmpU, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__CmpU, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__CmpU, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__SnpLCode, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__SnpLCode, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__SnpLCode, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__SnpLCode, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__SnpLData, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__SnpLData, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__SnpLData, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__SnpLData, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__SnpLInv, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__SnpLInv, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__SnpLInv, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__SnpLInv, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__SnpLCurr, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__SnpLCurr, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__SnpLCurr, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__SnpLCurr, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__SnpInvOwn, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__SnpInvOwn, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__SnpInvOwn, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__SnpInvOwn, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__SnpCode, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__SnpCode, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__SnpCode, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__SnpCode, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__SnpData, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__SnpData, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__SnpData, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__SnpData, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__SnpDataMig, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__SnpDataMig, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__SnpDataMig, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__SnpDataMig, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__RspI, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__RspI, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__RspI, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__RspI, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__RspIWb, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__RspIWb, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__RspIWb, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__RspIWb, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__RspS, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__RspS, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__RspS, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__RspS, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__RspSWb, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__RspSWb, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__RspSWb, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__RspSWb, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__RspCurData, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__RspCurData, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__RspCurData, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__RspCurData, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__RspE, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__RspE, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__RspE, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__RspE, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__RspFwdID, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__RspFwdID, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__RspFwdID, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__RspFwdID, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__RspFwdIWb, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__RspFwdIWb, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__RspFwdIWb, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__RspFwdIWb, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__RspFwdIC, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__RspFwdIC, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__RspFwdIC, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__RspFwdIC, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__RspFwdSWb, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__RspFwdSWb, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__RspFwdSWb, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__RspFwdSWb, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__RspFwdS, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__RspFwdS, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__RspFwdS, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__RspFwdS, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__Data_SI, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__Data_SI, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__Data_SI, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__Data_SI, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__Data_E, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__Data_E, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__Data_E, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__Data_E, alloc_hint:false"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__RdCode, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__RdCode, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__RdCode, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__RdCode, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__RdData, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__RdData, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__RdData, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__RdData, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__ReqFwdCnflt, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__ReqFwdCnflt, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__ReqFwdCnflt, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__ReqFwdCnflt, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__RdDataMig, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__RdDataMig, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__RdDataMig, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__RdDataMig, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__RdInvOwn, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__RdInvOwn, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__RdInvOwn, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__RdInvOwn, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__InvXtoI, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__InvXtoI, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__InvXtoI, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__InvXtoI, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__InvItoE, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__InvItoE, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__InvItoE, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__InvItoE, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__RdInv, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__RdInv, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__RdInv, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__RdInv, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__InvItoM, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__InvItoM, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__InvItoM, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__InvItoM, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__WbMtoI, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__WbMtoI, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__WbMtoI, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__WbMtoI, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__WbMtoS, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__WbMtoS, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__WbMtoS, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__WbMtoS, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__WbMtoE, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__WbMtoE, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__WbMtoE, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__WbMtoE, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__WbEtoI, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__WbEtoI, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__WbEtoI, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__WbEtoI, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__RdCur, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__RdCur, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__RdCur, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__RdCur, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__WbMtoIPtl, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__WbMtoIPtl, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__WbMtoIPtl, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__WbMtoIPtl, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__WbMtoEPtl, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__WbMtoEPtl, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__WbMtoEPtl, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__WbMtoEPtl, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__SI_CmpO, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__SI_CmpO, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__SI_CmpO, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__SI_CmpO, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__E_CmpO, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__E_CmpO, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__E_CmpO, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__E_CmpO, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__FwdCnfltO, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__FwdCnfltO, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__FwdCnfltO, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__FwdCnfltO, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__Data_M, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__Data_M, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__Data_M, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__Data_M, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__M_CmpO, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__M_CmpO, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__M_CmpO, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__M_CmpO, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__CmpU, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__CmpU, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__CmpU, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__CmpU, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__SnpLCode, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__SnpLCode, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__SnpLCode, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__SnpLCode, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__SnpLData, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__SnpLData, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__SnpLData, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__SnpLData, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__SnpLInv, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__SnpLInv, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__SnpLInv, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__SnpLInv, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__SnpLCurr, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__SnpLCurr, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__SnpLCurr, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__SnpLCurr, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__SnpInvOwn, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__SnpInvOwn, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__SnpInvOwn, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__SnpInvOwn, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__SnpCode, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__SnpCode, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__SnpCode, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__SnpCode, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__SnpData, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__SnpData, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__SnpData, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__SnpData, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__SnpDataMig, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__SnpDataMig, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__SnpDataMig, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__SnpDataMig, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__RspI, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__RspI, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__RspI, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__RspI, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__RspIWb, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__RspIWb, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__RspIWb, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__RspIWb, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__RspS, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__RspS, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__RspS, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__RspS, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__RspSWb, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__RspSWb, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__RspSWb, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__RspSWb, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__RspCurData, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__RspCurData, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__RspCurData, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__RspCurData, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__RspE, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__RspE, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__RspE, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__RspE, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__RspFwdID, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__RspFwdID, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__RspFwdID, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__RspFwdID, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__RspFwdIWb, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__RspFwdIWb, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__RspFwdIWb, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__RspFwdIWb, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__RspFwdIC, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__RspFwdIC, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__RspFwdIC, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__RspFwdIC, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__RspFwdSWb, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__RspFwdSWb, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__RspFwdSWb, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__RspFwdSWb, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__RspFwdS, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__RspFwdS, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__RspFwdS, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__RspFwdS, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__Data_SI, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__Data_SI, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__Data_SI, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__Data_SI, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:0, address:0, opcode:UPI_Opcode__Data_E, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:1, address:0, opcode:UPI_Opcode__Data_E, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:2, address:0, opcode:UPI_Opcode__Data_E, alloc_hint:true"
+	Fired 3063036 times	- Rule "ca_send_new_request, idx:3, address:0, opcode:UPI_Opcode__Data_E, alloc_hint:true"
+	Fired 3063036 times	- Rule "idicagent_send_snoop_data, agent:0, index:0"
+	Fired 3063036 times	- Rule "idicagent_send_snoop_data, agent:1, index:0"
+	Fired 3063036 times	- Rule "idicagent_send_snoop_data, agent:2, index:0"
+	Fired 3063036 times	- Rule "idicagent_modify_cacheline, agent:0, address:0, word:0, data:0"
+	Fired 3063036 times	- Rule "idicagent_modify_cacheline, agent:1, address:0, word:0, data:0"
+	Fired 3063036 times	- Rule "idicagent_modify_cacheline, agent:2, address:0, word:0, data:0"
+	Fired 3063036 times	- Rule "agent_send_write_data, agent:0, index:0"
+	Fired 3063036 times	- Rule "agent_send_write_data, agent:1, index:0"
+	Fired 3063036 times	- Rule "agent_send_write_data, agent:2, index:0"
+	Fired 3063036 times	- Rule "ulink_send_CAResp_packet, agent:0, index:0"
+	Fired 3063036 times	- Rule "ulink_send_CAResp_packet, agent:1, index:0"
+	Fired 3063036 times	- Rule "ulink_send_CAResp_packet, agent:2, index:0"
+	Fired 3063036 times	- Rule "ulink_send_CAResp_packet, agent:3, index:0"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:0, idx:0, resp_opcode:UPI_Opcode__RdCode"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:1, idx:0, resp_opcode:UPI_Opcode__RdCode"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:2, idx:0, resp_opcode:UPI_Opcode__RdCode"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:3, idx:0, resp_opcode:UPI_Opcode__RdCode"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:0, idx:0, resp_opcode:UPI_Opcode__RdData"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:1, idx:0, resp_opcode:UPI_Opcode__RdData"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:2, idx:0, resp_opcode:UPI_Opcode__RdData"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:3, idx:0, resp_opcode:UPI_Opcode__RdData"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:0, idx:0, resp_opcode:UPI_Opcode__ReqFwdCnflt"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:1, idx:0, resp_opcode:UPI_Opcode__ReqFwdCnflt"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:2, idx:0, resp_opcode:UPI_Opcode__ReqFwdCnflt"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:3, idx:0, resp_opcode:UPI_Opcode__ReqFwdCnflt"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:0, idx:0, resp_opcode:UPI_Opcode__RdDataMig"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:1, idx:0, resp_opcode:UPI_Opcode__RdDataMig"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:2, idx:0, resp_opcode:UPI_Opcode__RdDataMig"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:3, idx:0, resp_opcode:UPI_Opcode__RdDataMig"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:0, idx:0, resp_opcode:UPI_Opcode__RdInvOwn"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:1, idx:0, resp_opcode:UPI_Opcode__RdInvOwn"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:2, idx:0, resp_opcode:UPI_Opcode__RdInvOwn"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:3, idx:0, resp_opcode:UPI_Opcode__RdInvOwn"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:0, idx:0, resp_opcode:UPI_Opcode__InvXtoI"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:1, idx:0, resp_opcode:UPI_Opcode__InvXtoI"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:2, idx:0, resp_opcode:UPI_Opcode__InvXtoI"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:3, idx:0, resp_opcode:UPI_Opcode__InvXtoI"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:0, idx:0, resp_opcode:UPI_Opcode__InvItoE"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:1, idx:0, resp_opcode:UPI_Opcode__InvItoE"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:2, idx:0, resp_opcode:UPI_Opcode__InvItoE"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:3, idx:0, resp_opcode:UPI_Opcode__InvItoE"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:0, idx:0, resp_opcode:UPI_Opcode__RdInv"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:1, idx:0, resp_opcode:UPI_Opcode__RdInv"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:2, idx:0, resp_opcode:UPI_Opcode__RdInv"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:3, idx:0, resp_opcode:UPI_Opcode__RdInv"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:0, idx:0, resp_opcode:UPI_Opcode__InvItoM"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:1, idx:0, resp_opcode:UPI_Opcode__InvItoM"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:2, idx:0, resp_opcode:UPI_Opcode__InvItoM"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:3, idx:0, resp_opcode:UPI_Opcode__InvItoM"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:0, idx:0, resp_opcode:UPI_Opcode__WbMtoI"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:1, idx:0, resp_opcode:UPI_Opcode__WbMtoI"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:2, idx:0, resp_opcode:UPI_Opcode__WbMtoI"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:3, idx:0, resp_opcode:UPI_Opcode__WbMtoI"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:0, idx:0, resp_opcode:UPI_Opcode__WbMtoS"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:1, idx:0, resp_opcode:UPI_Opcode__WbMtoS"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:2, idx:0, resp_opcode:UPI_Opcode__WbMtoS"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:3, idx:0, resp_opcode:UPI_Opcode__WbMtoS"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:0, idx:0, resp_opcode:UPI_Opcode__WbMtoE"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:1, idx:0, resp_opcode:UPI_Opcode__WbMtoE"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:2, idx:0, resp_opcode:UPI_Opcode__WbMtoE"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:3, idx:0, resp_opcode:UPI_Opcode__WbMtoE"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:0, idx:0, resp_opcode:UPI_Opcode__WbEtoI"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:1, idx:0, resp_opcode:UPI_Opcode__WbEtoI"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:2, idx:0, resp_opcode:UPI_Opcode__WbEtoI"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:3, idx:0, resp_opcode:UPI_Opcode__WbEtoI"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:0, idx:0, resp_opcode:UPI_Opcode__RdCur"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:1, idx:0, resp_opcode:UPI_Opcode__RdCur"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:2, idx:0, resp_opcode:UPI_Opcode__RdCur"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:3, idx:0, resp_opcode:UPI_Opcode__RdCur"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:0, idx:0, resp_opcode:UPI_Opcode__WbMtoIPtl"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:1, idx:0, resp_opcode:UPI_Opcode__WbMtoIPtl"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:2, idx:0, resp_opcode:UPI_Opcode__WbMtoIPtl"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:3, idx:0, resp_opcode:UPI_Opcode__WbMtoIPtl"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:0, idx:0, resp_opcode:UPI_Opcode__WbMtoEPtl"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:1, idx:0, resp_opcode:UPI_Opcode__WbMtoEPtl"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:2, idx:0, resp_opcode:UPI_Opcode__WbMtoEPtl"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:3, idx:0, resp_opcode:UPI_Opcode__WbMtoEPtl"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:0, idx:0, resp_opcode:UPI_Opcode__SI_CmpO"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:1, idx:0, resp_opcode:UPI_Opcode__SI_CmpO"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:2, idx:0, resp_opcode:UPI_Opcode__SI_CmpO"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:3, idx:0, resp_opcode:UPI_Opcode__SI_CmpO"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:0, idx:0, resp_opcode:UPI_Opcode__E_CmpO"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:1, idx:0, resp_opcode:UPI_Opcode__E_CmpO"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:2, idx:0, resp_opcode:UPI_Opcode__E_CmpO"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:3, idx:0, resp_opcode:UPI_Opcode__E_CmpO"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:0, idx:0, resp_opcode:UPI_Opcode__FwdCnfltO"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:1, idx:0, resp_opcode:UPI_Opcode__FwdCnfltO"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:2, idx:0, resp_opcode:UPI_Opcode__FwdCnfltO"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:3, idx:0, resp_opcode:UPI_Opcode__FwdCnfltO"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:0, idx:0, resp_opcode:UPI_Opcode__Data_M"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:1, idx:0, resp_opcode:UPI_Opcode__Data_M"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:2, idx:0, resp_opcode:UPI_Opcode__Data_M"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:3, idx:0, resp_opcode:UPI_Opcode__Data_M"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:0, idx:0, resp_opcode:UPI_Opcode__M_CmpO"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:1, idx:0, resp_opcode:UPI_Opcode__M_CmpO"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:2, idx:0, resp_opcode:UPI_Opcode__M_CmpO"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:3, idx:0, resp_opcode:UPI_Opcode__M_CmpO"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:0, idx:0, resp_opcode:UPI_Opcode__CmpU"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:1, idx:0, resp_opcode:UPI_Opcode__CmpU"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:2, idx:0, resp_opcode:UPI_Opcode__CmpU"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:3, idx:0, resp_opcode:UPI_Opcode__CmpU"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:0, idx:0, resp_opcode:UPI_Opcode__SnpLCode"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:1, idx:0, resp_opcode:UPI_Opcode__SnpLCode"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:2, idx:0, resp_opcode:UPI_Opcode__SnpLCode"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:3, idx:0, resp_opcode:UPI_Opcode__SnpLCode"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:0, idx:0, resp_opcode:UPI_Opcode__SnpLData"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:1, idx:0, resp_opcode:UPI_Opcode__SnpLData"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:2, idx:0, resp_opcode:UPI_Opcode__SnpLData"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:3, idx:0, resp_opcode:UPI_Opcode__SnpLData"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:0, idx:0, resp_opcode:UPI_Opcode__SnpLInv"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:1, idx:0, resp_opcode:UPI_Opcode__SnpLInv"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:2, idx:0, resp_opcode:UPI_Opcode__SnpLInv"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:3, idx:0, resp_opcode:UPI_Opcode__SnpLInv"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:0, idx:0, resp_opcode:UPI_Opcode__SnpLCurr"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:1, idx:0, resp_opcode:UPI_Opcode__SnpLCurr"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:2, idx:0, resp_opcode:UPI_Opcode__SnpLCurr"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:3, idx:0, resp_opcode:UPI_Opcode__SnpLCurr"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:0, idx:0, resp_opcode:UPI_Opcode__SnpInvOwn"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:1, idx:0, resp_opcode:UPI_Opcode__SnpInvOwn"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:2, idx:0, resp_opcode:UPI_Opcode__SnpInvOwn"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:3, idx:0, resp_opcode:UPI_Opcode__SnpInvOwn"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:0, idx:0, resp_opcode:UPI_Opcode__SnpCode"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:1, idx:0, resp_opcode:UPI_Opcode__SnpCode"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:2, idx:0, resp_opcode:UPI_Opcode__SnpCode"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:3, idx:0, resp_opcode:UPI_Opcode__SnpCode"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:0, idx:0, resp_opcode:UPI_Opcode__SnpData"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:1, idx:0, resp_opcode:UPI_Opcode__SnpData"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:2, idx:0, resp_opcode:UPI_Opcode__SnpData"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:3, idx:0, resp_opcode:UPI_Opcode__SnpData"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:0, idx:0, resp_opcode:UPI_Opcode__SnpDataMig"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:1, idx:0, resp_opcode:UPI_Opcode__SnpDataMig"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:2, idx:0, resp_opcode:UPI_Opcode__SnpDataMig"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:3, idx:0, resp_opcode:UPI_Opcode__SnpDataMig"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:0, idx:0, resp_opcode:UPI_Opcode__RspI"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:1, idx:0, resp_opcode:UPI_Opcode__RspI"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:2, idx:0, resp_opcode:UPI_Opcode__RspI"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:3, idx:0, resp_opcode:UPI_Opcode__RspI"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:0, idx:0, resp_opcode:UPI_Opcode__RspIWb"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:1, idx:0, resp_opcode:UPI_Opcode__RspIWb"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:2, idx:0, resp_opcode:UPI_Opcode__RspIWb"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:3, idx:0, resp_opcode:UPI_Opcode__RspIWb"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:0, idx:0, resp_opcode:UPI_Opcode__RspS"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:1, idx:0, resp_opcode:UPI_Opcode__RspS"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:2, idx:0, resp_opcode:UPI_Opcode__RspS"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:3, idx:0, resp_opcode:UPI_Opcode__RspS"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:0, idx:0, resp_opcode:UPI_Opcode__RspSWb"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:1, idx:0, resp_opcode:UPI_Opcode__RspSWb"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:2, idx:0, resp_opcode:UPI_Opcode__RspSWb"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:3, idx:0, resp_opcode:UPI_Opcode__RspSWb"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:0, idx:0, resp_opcode:UPI_Opcode__RspCurData"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:1, idx:0, resp_opcode:UPI_Opcode__RspCurData"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:2, idx:0, resp_opcode:UPI_Opcode__RspCurData"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:3, idx:0, resp_opcode:UPI_Opcode__RspCurData"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:0, idx:0, resp_opcode:UPI_Opcode__RspE"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:1, idx:0, resp_opcode:UPI_Opcode__RspE"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:2, idx:0, resp_opcode:UPI_Opcode__RspE"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:3, idx:0, resp_opcode:UPI_Opcode__RspE"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:0, idx:0, resp_opcode:UPI_Opcode__RspFwdID"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:1, idx:0, resp_opcode:UPI_Opcode__RspFwdID"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:2, idx:0, resp_opcode:UPI_Opcode__RspFwdID"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:3, idx:0, resp_opcode:UPI_Opcode__RspFwdID"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:0, idx:0, resp_opcode:UPI_Opcode__RspFwdIWb"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:1, idx:0, resp_opcode:UPI_Opcode__RspFwdIWb"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:2, idx:0, resp_opcode:UPI_Opcode__RspFwdIWb"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:3, idx:0, resp_opcode:UPI_Opcode__RspFwdIWb"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:0, idx:0, resp_opcode:UPI_Opcode__RspFwdIC"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:1, idx:0, resp_opcode:UPI_Opcode__RspFwdIC"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:2, idx:0, resp_opcode:UPI_Opcode__RspFwdIC"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:3, idx:0, resp_opcode:UPI_Opcode__RspFwdIC"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:0, idx:0, resp_opcode:UPI_Opcode__RspFwdSWb"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:1, idx:0, resp_opcode:UPI_Opcode__RspFwdSWb"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:2, idx:0, resp_opcode:UPI_Opcode__RspFwdSWb"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:3, idx:0, resp_opcode:UPI_Opcode__RspFwdSWb"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:0, idx:0, resp_opcode:UPI_Opcode__RspFwdS"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:1, idx:0, resp_opcode:UPI_Opcode__RspFwdS"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:2, idx:0, resp_opcode:UPI_Opcode__RspFwdS"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:3, idx:0, resp_opcode:UPI_Opcode__RspFwdS"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:0, idx:0, resp_opcode:UPI_Opcode__Data_SI"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:1, idx:0, resp_opcode:UPI_Opcode__Data_SI"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:2, idx:0, resp_opcode:UPI_Opcode__Data_SI"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:3, idx:0, resp_opcode:UPI_Opcode__Data_SI"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:0, idx:0, resp_opcode:UPI_Opcode__Data_E"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:1, idx:0, resp_opcode:UPI_Opcode__Data_E"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:2, idx:0, resp_opcode:UPI_Opcode__Data_E"
+	Fired 3063036 times	- Rule "upiagent_process_snoop_entry, agent:3, idx:0, resp_opcode:UPI_Opcode__Data_E"
+	Fired 3063036 times	- Rule "ulink_send_HASnp_packet, agent:0, index:0"
+	Fired 3063036 times	- Rule "ulink_send_HASnp_packet, agent:1, index:0"
+	Fired 3063036 times	- Rule "ulink_send_HASnp_packet, agent:2, index:0"
+	Fired 3063036 times	- Rule "ulink_send_HASnp_packet, agent:3, index:0"
+	Fired 3063036 times	- Rule "hbo_send_snoop_to_upiagent, htid:0, id:0"
+	Fired 3063036 times	- Rule "hbo_send_snoop_to_upiagent, htid:1, id:0"
+	Fired 3063036 times	- Rule "hbo_send_snoop_to_upiagent, htid:0, id:1"
+	Fired 3063036 times	- Rule "hbo_send_snoop_to_upiagent, htid:1, id:1"
+	Fired 3063036 times	- Rule "hbo_send_snoop_to_upiagent, htid:0, id:2"
+	Fired 3063036 times	- Rule "hbo_send_snoop_to_upiagent, htid:1, id:2"
+	Fired 3063036 times	- Rule "hbo_send_snoop_to_upiagent, htid:0, id:3"
+	Fired 3063036 times	- Rule "hbo_send_snoop_to_upiagent, htid:1, id:3"
+	Fired 3063036 times	- Rule "agent_release_cq_entry, agent:0, rtid:0"
+	Fired 3063036 times	- Rule "agent_release_cq_entry, agent:1, rtid:0"
+	Fired 3063036 times	- Rule "agent_release_cq_entry, agent:2, rtid:0"
+	Fired 3063036 times	- Rule "link_send_F2AData_packet, agent:0, index:0"
+	Fired 3063036 times	- Rule "link_send_F2AData_packet, agent:1, index:0"
+	Fired 3063036 times	- Rule "link_send_F2AData_packet, agent:2, index:0"
+	Fired 3063036 times	- Rule "link_send_F2AResp_packet, agent:0, index:0"
+	Fired 3063036 times	- Rule "link_send_F2AResp_packet, agent:1, index:0"
+	Fired 3063036 times	- Rule "link_send_F2AResp_packet, agent:2, index:0"
+	Fired 3063036 times	- Rule "link_send_F2AReq_packet, agent:0, index:0"
+	Fired 3063036 times	- Rule "link_send_F2AReq_packet, agent:1, index:0"
+	Fired 3063036 times	- Rule "link_send_F2AReq_packet, agent:2, index:0"
+	Fired 3063036 times	- Rule "link_send_A2FData_packet, agent:0, index:0"
+	Fired 3063036 times	- Rule "link_send_A2FData_packet, agent:1, index:0"
+	Fired 3063036 times	- Rule "link_send_A2FData_packet, agent:2, index:0"
+	Fired 3063036 times	- Rule "link_send_A2FResp_packet, agent:0, index:0"
+	Fired 3063036 times	- Rule "link_send_A2FResp_packet, agent:1, index:0"
+	Fired 3063036 times	- Rule "link_send_A2FResp_packet, agent:2, index:0"
+	Fired 3063036 times	- Rule "link_send_A2FReq_packet, agent:0, index:0"
+	Fired 3063036 times	- Rule "link_send_A2FReq_packet, agent:1, index:0"
+	Fired 3063036 times	- Rule "link_send_A2FReq_packet, agent:2, index:0"
+	Fired 3063036 times	- Rule "hbo_release_tractor_entry, htid:0"
+	Fired 3063036 times	- Rule "hbo_release_tractor_entry, htid:1"
+	Fired 3063036 times	- Rule "hbo_send_data_to_idicagent, htid:0"
+	Fired 3063036 times	- Rule "hbo_send_data_to_idicagent, htid:1"
+	Fired 3063036 times	- Rule "hbo_send_late_response_to_idicagent, htid:0"
+	Fired 3063036 times	- Rule "hbo_send_late_response_to_idicagent, htid:1"
+	Fired 3063036 times	- Rule "hbo_mufasa_alloc_and_update, htid:0"
+	Fired 3063036 times	- Rule "hbo_mufasa_alloc_and_update, htid:1"
+	Fired 3063036 times	- Rule "hbo_late_mufasa_lookup_phase, htid:0"
+	Fired 3063036 times	- Rule "hbo_late_mufasa_lookup_phase, htid:1"
+	Fired 3063036 times	- Rule "hbo_send_early_response_to_idicagent, htid:0"
+	Fired 3063036 times	- Rule "hbo_send_early_response_to_idicagent, htid:1"
+	Fired 3063036 times	- Rule "idicagent_send_snoop_response, agent:0, idx:0"
+	Fired 3063036 times	- Rule "idicagent_send_snoop_response, agent:1, idx:0"
+	Fired 3063036 times	- Rule "idicagent_send_snoop_response, agent:2, idx:0"
+	Fired 3063036 times	- Rule "idicagent_compute_snoop_response, agent:0, idx:0, bias:0"
+	Fired 3063036 times	- Rule "idicagent_compute_snoop_response, agent:1, idx:0, bias:0"
+	Fired 3063036 times	- Rule "idicagent_compute_snoop_response, agent:2, idx:0, bias:0"
+	Fired 3063036 times	- Rule "idicagent_compute_snoop_response, agent:0, idx:0, bias:1"
+	Fired 3063036 times	- Rule "idicagent_compute_snoop_response, agent:1, idx:0, bias:1"
+	Fired 3063036 times	- Rule "idicagent_compute_snoop_response, agent:2, idx:0, bias:1"
+	Fired 3063036 times	- Rule "idicagent_compute_snoop_response, agent:0, idx:0, bias:2"
+	Fired 3063036 times	- Rule "idicagent_compute_snoop_response, agent:1, idx:0, bias:2"
+	Fired 3063036 times	- Rule "idicagent_compute_snoop_response, agent:2, idx:0, bias:2"
+	Fired 3063036 times	- Rule "hbo_send_snoop_to_idicagent, htid:0, id:0"
+	Fired 3063036 times	- Rule "hbo_send_snoop_to_idicagent, htid:1, id:0"
+	Fired 3063036 times	- Rule "hbo_send_snoop_to_idicagent, htid:0, id:1"
+	Fired 3063036 times	- Rule "hbo_send_snoop_to_idicagent, htid:1, id:1"
+	Fired 3063036 times	- Rule "hbo_send_snoop_to_idicagent, htid:0, id:2"
+	Fired 3063036 times	- Rule "hbo_send_snoop_to_idicagent, htid:1, id:2"
+	Fired 3063036 times	- Rule "hbo_early_MFS_lookup_phase, htid:0"
+	Fired 3063036 times	- Rule "hbo_early_MFS_lookup_phase, htid:1"
+	Fired 3063036 times	- Rule "hbo_sf_lookup_phase, htid:0, choice:false"
+	Fired 3063036 times	- Rule "hbo_sf_lookup_phase, htid:1, choice:false"
+	Fired 3063036 times	- Rule "hbo_sf_lookup_phase, htid:0, choice:true"
+	Fired 3063036 times	- Rule "hbo_sf_lookup_phase, htid:1, choice:true"
+	Fired 3063036 times	- Rule "update_buffer, word:0, data:0"
