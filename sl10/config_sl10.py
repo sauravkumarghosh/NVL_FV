@@ -82,7 +82,7 @@ class Config(rbw.Globals):
     MonitorSize = rbw.Range(MAX_MON_SIZE)
 
     NUM_WORD = rbw.Const(default=1) ## 1 Cache line has NUM_Word many indices, required to be increased to 2 while verifying partial opcodes
-    NUM_DATA = rbw.Const(default=1) 
+    NUM_DATA = rbw.Const(default=2) 
     Word = rbw.Range(NUM_WORD)
     Data = rbw.Range(NUM_DATA)
     Line = rbw.Array(Word, Data)

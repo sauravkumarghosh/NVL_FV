@@ -16,7 +16,7 @@ const
   NUM_ADDRESS: 1;
   MAX_MON_SIZE: 1;
   NUM_WORD: 1;
-  NUM_DATA: 1;
+  NUM_DATA: 2;
   MAX_SNOOPS: 1;
   NUM_A2FReq: 1;
   NUM_F2AResp: 1;
@@ -64,7 +64,7 @@ type
   Address: 0..0;
   MonitorSize: 0..0;
   Word: 0..0;
-  Data: 0..0;
+  Data: 0..1;
   Line: array [Word] of Data;
   BE: array [Word] of boolean;
   Snoopq_sz: 0..0;
