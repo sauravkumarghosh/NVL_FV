@@ -16,7 +16,7 @@ const
   NUM_ADDRESS: 1;
   MAX_MON_SIZE: 1;
   NUM_WORD: 1;
-  NUM_DATA: 2;
+  NUM_DATA: 1;
   MAX_SNOOPS: 1;
   NUM_A2FReq: 1;
   NUM_F2AResp: 1;
@@ -64,7 +64,7 @@ type
   Address: 0..0;
   MonitorSize: 0..0;
   Word: 0..0;
-  Data: 0..1;
+  Data: 0..0;
   Line: array [Word] of Data;
   BE: array [Word] of boolean;
   Snoopq_sz: 0..0;
@@ -308,7 +308,31 @@ SRB_STATE : enum { SRB_STATE__Idle, SRB_STATE__Ready, SRB_STATE__Conflict, SRB_S
     pkts: array [Index__1] of UPIPacket;
     count: Count__1;
   EndRecord;
-  CChannel__1: Record
+  UChannel__2: Record
+    Index: Index__1;
+    Count: Count__1;
+    pkts: array [Index__1] of UPIPacket;
+    count: Count__1;
+  EndRecord;
+  UChannel__3: Record
+    Index: Index__1;
+    Count: Count__1;
+    pkts: array [Index__1] of UPIPacket;
+    count: Count__1;
+  EndRecord;
+  UChannel__4: Record
+    Index: Index__1;
+    Count: Count__1;
+    pkts: array [Index__1] of UPIPacket;
+    count: Count__1;
+  EndRecord;
+  UChannel__5: Record
+    Index: Index__1;
+    Count: Count__1;
+    pkts: array [Index__1] of UPIPacket;
+    count: Count__1;
+  EndRecord;
+  CChannel__5: Record
     Index: Index__1;
     Count: Count__1;
     pkts: array [Index__1] of CXMPacket;
@@ -316,11 +340,11 @@ SRB_STATE : enum { SRB_STATE__Idle, SRB_STATE__Ready, SRB_STATE__Conflict, SRB_S
   EndRecord;
   ULink: Record
     CAReq: UChannel__1;
-    CAWb: UChannel__1;
-    HASnp: UChannel__1;
-    CAResp: UChannel__1;
-    HAResp: UChannel__1;
-    MCResp: CChannel__1;
+    CAWb: UChannel__2;
+    HASnp: UChannel__3;
+    CAResp: UChannel__4;
+    HAResp: UChannel__5;
+    MCResp: CChannel__5;
     from_ca: UPIPacket;
     to_ha: UPIPacket;
     to_ha__update:boolean;
@@ -367,19 +391,49 @@ SRB_STATE : enum { SRB_STATE__Idle, SRB_STATE__Ready, SRB_STATE__Conflict, SRB_S
     snoopq: array [Snoopq_sz] of SnoopEntry;
     address_monitored: array [Address] of boolean;
   EndRecord;
-  Channel__1: Record
+  Channel__5: Record
+    Index: Index__1;
+    Count: Count__1;
+    pkts: array [Index__1] of AgentPacket;
+    count: Count__1;
+  EndRecord;
+  Channel__6: Record
+    Index: Index__1;
+    Count: Count__1;
+    pkts: array [Index__1] of AgentPacket;
+    count: Count__1;
+  EndRecord;
+  Channel__7: Record
+    Index: Index__1;
+    Count: Count__1;
+    pkts: array [Index__1] of AgentPacket;
+    count: Count__1;
+  EndRecord;
+  Channel__8: Record
+    Index: Index__1;
+    Count: Count__1;
+    pkts: array [Index__1] of AgentPacket;
+    count: Count__1;
+  EndRecord;
+  Channel__9: Record
+    Index: Index__1;
+    Count: Count__1;
+    pkts: array [Index__1] of AgentPacket;
+    count: Count__1;
+  EndRecord;
+  Channel__10: Record
     Index: Index__1;
     Count: Count__1;
     pkts: array [Index__1] of AgentPacket;
     count: Count__1;
   EndRecord;
   Link: Record
-    A2FReq: Channel__1;
-    F2AResp: Channel__1;
-    F2AData: Channel__1;
-    A2FResp: Channel__1;
-    A2FData: Channel__1;
-    F2AReq: Channel__1;
+    A2FReq: Channel__5;
+    F2AResp: Channel__6;
+    F2AData: Channel__7;
+    A2FResp: Channel__8;
+    A2FData: Channel__9;
+    F2AReq: Channel__10;
     from_agent: IDIPacket;
     to_fabric: AgentPacket;
     to_fabric__update:boolean;
@@ -4127,31 +4181,67 @@ begin
     endif;
 end;
 
+procedure UChannel__2__push(var self: UChannel__2; var pkt: UPIPacket);
+begin
+    Guard((self.count < MAX__1));
+    if isundefined(guard_failed) then
+      self.pkts[self.count] := pkt;
+      self.count := (self.count + 1);
+    endif;
+end;
+
+procedure UChannel__4__push(var self: UChannel__4; var pkt: UPIPacket);
+begin
+    Guard((self.count < MAX__1));
+    if isundefined(guard_failed) then
+      self.pkts[self.count] := pkt;
+      self.count := (self.count + 1);
+    endif;
+end;
+
 procedure ULink__recv_ca_packet(var self: ULink; var packet: UPIPacket);
 begin
   if (packet.opcode=UPI_Opcode__RdCode | packet.opcode=UPI_Opcode__RdData | packet.opcode=UPI_Opcode__RdDataMig | packet.opcode=UPI_Opcode__RdInvOwn | packet.opcode=UPI_Opcode__InvXtoI | packet.opcode=UPI_Opcode__InvItoE | packet.opcode=UPI_Opcode__RdInv | packet.opcode=UPI_Opcode__InvItoM | packet.opcode=UPI_Opcode__RdCur ) then
     UChannel__1__push(self.CAReq, packet);
   elsif (packet.opcode=UPI_Opcode__ReqFwdCnflt | packet.opcode=UPI_Opcode__WbMtoI | packet.opcode=UPI_Opcode__WbMtoS | packet.opcode=UPI_Opcode__WbMtoE | packet.opcode=UPI_Opcode__WbEtoI | packet.opcode=UPI_Opcode__WbMtoIPtl | packet.opcode=UPI_Opcode__WbMtoEPtl ) then
-    UChannel__1__push(self.CAWb, packet);
+    UChannel__2__push(self.CAWb, packet);
   elsif (packet.opcode=UPI_Opcode__RspI | packet.opcode=UPI_Opcode__RspIWb | packet.opcode=UPI_Opcode__RspS | packet.opcode=UPI_Opcode__RspSWb | packet.opcode=UPI_Opcode__RspCurData | packet.opcode=UPI_Opcode__RspE | packet.opcode=UPI_Opcode__RspFwdID | packet.opcode=UPI_Opcode__RspFwdIWb | packet.opcode=UPI_Opcode__RspFwdIC | packet.opcode=UPI_Opcode__RspFwdSWb | packet.opcode=UPI_Opcode__RspFwdS ) then
-    UChannel__1__push(self.CAResp, packet);
+    UChannel__4__push(self.CAResp, packet);
   else
     assert False " Did not handle  packet.opcode  packet. In recv_ca_packet in link";
   endif;
 end;
 
+procedure UChannel__3__push(var self: UChannel__3; var pkt: UPIPacket);
+begin
+    Guard((self.count < MAX__1));
+    if isundefined(guard_failed) then
+      self.pkts[self.count] := pkt;
+      self.count := (self.count + 1);
+    endif;
+end;
+
+procedure UChannel__5__push(var self: UChannel__5; var pkt: UPIPacket);
+begin
+    Guard((self.count < MAX__1));
+    if isundefined(guard_failed) then
+      self.pkts[self.count] := pkt;
+      self.count := (self.count + 1);
+    endif;
+end;
+
 procedure ULink__recv_ha_packet(var self: ULink; var packet: UPIPacket);
 begin
   if (packet.opcode=UPI_Opcode__SnpLCode | packet.opcode=UPI_Opcode__SnpLData | packet.opcode=UPI_Opcode__SnpLInv | packet.opcode=UPI_Opcode__SnpLCurr | packet.opcode=UPI_Opcode__SnpInvOwn | packet.opcode=UPI_Opcode__SnpCode | packet.opcode=UPI_Opcode__SnpDataMig | packet.opcode=UPI_Opcode__SnpData ) then
-    UChannel__1__push(self.HASnp, packet);
+    UChannel__3__push(self.HASnp, packet);
   elsif (packet.opcode=UPI_Opcode__SI_CmpO | packet.opcode=UPI_Opcode__Data_SI | packet.opcode=UPI_Opcode__E_CmpO | packet.opcode=UPI_Opcode__Data_E | packet.opcode=UPI_Opcode__FwdCnfltO | packet.opcode=UPI_Opcode__Data_M | packet.opcode=UPI_Opcode__M_CmpO | packet.opcode=UPI_Opcode__CmpU ) then
-    UChannel__1__push(self.HAResp, packet);
+    UChannel__5__push(self.HAResp, packet);
   else
     assert False " Did not handle  packet.opcode  packet. in recv_ha_packet in link";
   endif;
 end;
 
-procedure CChannel__1__push(var self: CChannel__1; var pkt: CXMPacket);
+procedure CChannel__5__push(var self: CChannel__5; var pkt: CXMPacket);
 begin
     Guard((self.count < MAX__1));
     if isundefined(guard_failed) then
@@ -4163,7 +4253,7 @@ end;
 procedure ULink__recv_mc_packet(var self: ULink; var packet: CXMPacket);
 begin
   if (packet.opcode=CXM_Opcode__MemData ) then
-    CChannel__1__push(self.MCResp, packet);
+    CChannel__5__push(self.MCResp, packet);
   else
     assert False " Did not handle  packet.opcode  packet. in recv_ha_packet in link";
   endif;
@@ -4453,7 +4543,25 @@ begin
   endif;
 end;
 
-procedure Channel__1__push(var self: Channel__1; var pkt: AgentPacket);
+procedure Channel__5__push(var self: Channel__5; var pkt: AgentPacket);
+begin
+    Guard((self.count < MAX__1));
+    if isundefined(guard_failed) then
+      self.pkts[self.count] := pkt;
+      self.count := (self.count + 1);
+    endif;
+end;
+
+procedure Channel__8__push(var self: Channel__8; var pkt: AgentPacket);
+begin
+    Guard((self.count < MAX__1));
+    if isundefined(guard_failed) then
+      self.pkts[self.count] := pkt;
+      self.count := (self.count + 1);
+    endif;
+end;
+
+procedure Channel__9__push(var self: Channel__9; var pkt: AgentPacket);
 begin
     Guard((self.count < MAX__1));
     if isundefined(guard_failed) then
@@ -4472,26 +4580,53 @@ begin
   pkt.network_id:=self.network_id;
   pkt.packet:=packet;
   if (packet.opcode=IDI_Opcode__RdAny | packet.opcode=IDI_Opcode__RdCurr | packet.opcode=IDI_Opcode__RdOwn | packet.opcode=IDI_Opcode__RdShared | packet.opcode=IDI_Opcode__RdOwnNoData | packet.opcode=IDI_Opcode__ItoMWr | packet.opcode=IDI_Opcode__CLFlush | packet.opcode=IDI_Opcode__CleanEvict | packet.opcode=IDI_Opcode__CleanEvictNoInvalidate | packet.opcode=IDI_Opcode__DirtyEvict | packet.opcode=IDI_Opcode__DirtyEvictNoInv | packet.opcode=IDI_Opcode__CleanEvictNoData | packet.opcode=IDI_Opcode__CLFlush_OPT | packet.opcode=IDI_Opcode__WOWrInv | packet.opcode=IDI_Opcode__WOWrInvF | packet.opcode=IDI_Opcode__WrInv | packet.opcode=IDI_Opcode__CLWB | packet.opcode=IDI_Opcode__MemWr | packet.opcode=IDI_Opcode__UcRdF | packet.opcode=IDI_Opcode__PrefetchtoSysCache | packet.opcode=IDI_Opcode__SetMonitor | packet.opcode=IDI_Opcode__ClrMonitor | packet.opcode=IDI_Opcode__RdCurr_ns ) then
-    Channel__1__push(self.A2FReq, pkt);
+    Channel__5__push(self.A2FReq, pkt);
   elsif (packet.opcode=IDI_Opcode__RspIHitI | packet.opcode=IDI_Opcode__RspSHitSE | packet.opcode=IDI_Opcode__RspIHitSE | packet.opcode=IDI_Opcode__RspVHitV | packet.opcode=IDI_Opcode__RspIFwdM | packet.opcode=IDI_Opcode__RspSFwdM | packet.opcode=IDI_Opcode__RspVFwdV | packet.opcode=IDI_Opcode__GOAck ) then
     pkt.network_id:=self.network_id;
     pkt.packet:=ipkt;
-    Channel__1__push(self.A2FResp, pkt);
+    Channel__8__push(self.A2FResp, pkt);
   elsif (packet.opcode = IDI_Opcode__Data) then
-    Channel__1__push(self.A2FData, pkt);
+    Channel__9__push(self.A2FData, pkt);
   else
     assert False " Did not handle  packet.opcode  packet. In recv_agent_packet in link";
   endif;
 end;
 
+procedure Channel__7__push(var self: Channel__7; var pkt: AgentPacket);
+begin
+    Guard((self.count < MAX__1));
+    if isundefined(guard_failed) then
+      self.pkts[self.count] := pkt;
+      self.count := (self.count + 1);
+    endif;
+end;
+
+procedure Channel__6__push(var self: Channel__6; var pkt: AgentPacket);
+begin
+    Guard((self.count < MAX__1));
+    if isundefined(guard_failed) then
+      self.pkts[self.count] := pkt;
+      self.count := (self.count + 1);
+    endif;
+end;
+
+procedure Channel__10__push(var self: Channel__10; var pkt: AgentPacket);
+begin
+    Guard((self.count < MAX__1));
+    if isundefined(guard_failed) then
+      self.pkts[self.count] := pkt;
+      self.count := (self.count + 1);
+    endif;
+end;
+
 procedure Link__recv_fabric_packet(var self: Link; var packet: AgentPacket);
 begin
   if (packet.packet.opcode = IDI_Opcode__Data) then
-    Channel__1__push(self.F2AData, packet);
+    Channel__7__push(self.F2AData, packet);
   elsif (packet.packet.opcode=IDI_Opcode__GO | packet.packet.opcode=IDI_Opcode__GoWritePull | packet.packet.opcode=IDI_Opcode__FastGO | packet.packet.opcode=IDI_Opcode__ExtCmp | packet.packet.opcode=IDI_Opcode__GoWritePullDrop | packet.packet.opcode=IDI_Opcode__FastGOWritePull | packet.packet.opcode=IDI_Opcode__WritePull ) then
-    Channel__1__push(self.F2AResp, packet);
+    Channel__6__push(self.F2AResp, packet);
   elsif (packet.packet.opcode=IDI_Opcode__SnpData | packet.packet.opcode=IDI_Opcode__SnpCode | packet.packet.opcode=IDI_Opcode__SnpInv | packet.packet.opcode=IDI_Opcode__SnpCur | packet.packet.opcode=IDI_Opcode__BackInv ) then
-    Channel__1__push(self.F2AReq, packet);
+    Channel__10__push(self.F2AReq, packet);
   else
     assert False " Did not handle  packet.packet.opcode  packet. in recv_fabric_packet in link";
   endif;
@@ -4508,7 +4643,7 @@ begin
     idiPacket.rtid:=packet.rtid;
     agentPacket.packet:=idiPacket;
     agentPacket.network_id:=self.network_id;
-    Channel__1__push(self.F2AData, agentPacket);
+    Channel__7__push(self.F2AData, agentPacket);
   else
     assert False " Did not handle  packet.packet.opcode  packet. in recv_fabric_packet in link";
   endif;
@@ -6037,7 +6172,7 @@ begin
         endif;
       endif;
       self.tractor[htid].late_mufasa_lookup_done := True;
-      if (((self.tractor[htid].protocol = Protocol__UPI) &  (self.tractor[htid].uopcode=UPI_Opcode__WbMtoI | self.tractor[htid].uopcode=UPI_Opcode__WbMtoS | self.tractor[htid].uopcode=UPI_Opcode__WbMtoE | self.tractor[htid].uopcode=UPI_Opcode__WbMtoIPtl | self.tractor[htid].uopcode=UPI_Opcode__WbMtoEPtl ) &  (way_found |  self.tractor[htid].alloc_hint ) ) |  ((self.tractor[htid].protocol = Protocol__UPI) &  (self.tractor[htid].uopcode=UPI_Opcode__WbEtoI ) &  (!(way_found) &  self.tractor[htid].alloc_hint ) ) |  ((self.tractor[htid].protocol = Protocol__IDIC) &  (self.tractor[htid].iopcode=IDI_Opcode__ItoMWr | self.tractor[htid].iopcode=IDI_Opcode__MemWr | self.tractor[htid].iopcode=IDI_Opcode__DirtyEvict | self.tractor[htid].iopcode=IDI_Opcode__DirtyEvictNoInv | self.tractor[htid].iopcode=IDI_Opcode__WOWrInv | self.tractor[htid].iopcode=IDI_Opcode__WOWrInvF | self.tractor[htid].iopcode=IDI_Opcode__WrInv | self.tractor[htid].iopcode=IDI_Opcode__PrefetchtoSysCache ) &  (way_found |  self.tractor[htid].alloc_hint ) ) |  ((self.tractor[htid].protocol = Protocol__IDIC) &  (self.tractor[htid].iopcode=IDI_Opcode__CleanEvict | self.tractor[htid].iopcode=IDI_Opcode__CleanEvictNoInvalidate ) &  (!(way_found) &  self.tractor[htid].alloc_hint ) ) |  (self.tractor[htid].mfs_lookup_done &  !(self.tractor[htid].mfs_hit) &  self.tractor[htid].alloc_hint ) |  ((self.tractor[htid].protocol = Protocol__UPI) &  (self.tractor[htid].uopcode=UPI_Opcode__InvXtoI | self.tractor[htid].uopcode=UPI_Opcode__InvItoM | self.tractor[htid].uopcode=UPI_Opcode__InvItoM ) &  self.tractor[htid].snoop_data_recvd &  (way_found |  self.tractor[htid].alloc_hint ) ) |  ((self.tractor[htid].protocol = Protocol__IDIC) &  (self.tractor[htid].iopcode=IDI_Opcode__RdOwnNoData | self.tractor[htid].iopcode=IDI_Opcode__CLFlush | self.tractor[htid].iopcode=IDI_Opcode__CLFlush_OPT | self.tractor[htid].iopcode=IDI_Opcode__CLWB ) &  self.tractor[htid].snoop_data_recvd &  (way_found |  self.tractor[htid].alloc_hint ) ) |  ((self.tractor[htid].protocol = Protocol__IDIC) &  (self.tractor[htid].iopcode=IDI_Opcode__RdCurr_ns ) &  self.tractor[htid].snoop_data_recvd &  self.tractor[htid].wb_recvd &  (way_found |  self.tractor[htid].alloc_hint ) ) |  (self.tractor[htid].mfs_lookup_done &  self.tractor[htid].mfs_hit &  (self.tractor[htid].mfs_state=MFSState__E | self.tractor[htid].mfs_state=MFSState__M ) &  self.tractor[htid].snoop_data_recvd ) |  (self.tractor[htid].mfs_lookup_done &  self.tractor[htid].mfs_hit &  (self.tractor[htid].mfs_state = MFSState__M) &  HBo__request_with_goM_intention(self, htid) ) ) then
+      if (((self.tractor[htid].protocol = Protocol__UPI) &  (self.tractor[htid].uopcode=UPI_Opcode__WbMtoI | self.tractor[htid].uopcode=UPI_Opcode__WbMtoS | self.tractor[htid].uopcode=UPI_Opcode__WbMtoE | self.tractor[htid].uopcode=UPI_Opcode__WbMtoIPtl | self.tractor[htid].uopcode=UPI_Opcode__WbMtoEPtl ) &  (way_found |  self.tractor[htid].alloc_hint ) ) |  ((self.tractor[htid].protocol = Protocol__UPI) &  (self.tractor[htid].uopcode=UPI_Opcode__WbEtoI ) &  (!(way_found) &  self.tractor[htid].alloc_hint ) ) |  ((self.tractor[htid].protocol = Protocol__IDIC) &  (self.tractor[htid].iopcode=IDI_Opcode__ItoMWr | self.tractor[htid].iopcode=IDI_Opcode__MemWr | self.tractor[htid].iopcode=IDI_Opcode__DirtyEvict | self.tractor[htid].iopcode=IDI_Opcode__DirtyEvictNoInv | self.tractor[htid].iopcode=IDI_Opcode__WOWrInv | self.tractor[htid].iopcode=IDI_Opcode__WOWrInvF | self.tractor[htid].iopcode=IDI_Opcode__WrInv | self.tractor[htid].iopcode=IDI_Opcode__PrefetchtoSysCache ) &  (way_found |  self.tractor[htid].alloc_hint ) ) |  ((self.tractor[htid].protocol = Protocol__IDIC) &  (self.tractor[htid].iopcode=IDI_Opcode__CleanEvict | self.tractor[htid].iopcode=IDI_Opcode__CleanEvictNoInvalidate ) &  (!(way_found) &  self.tractor[htid].alloc_hint ) ) |  (self.tractor[htid].mfs_lookup_done &  !(self.tractor[htid].mfs_hit) &  self.tractor[htid].alloc_hint ) |  ((self.tractor[htid].protocol = Protocol__UPI) &  (self.tractor[htid].uopcode=UPI_Opcode__InvXtoI | self.tractor[htid].uopcode=UPI_Opcode__InvItoM | self.tractor[htid].uopcode=UPI_Opcode__InvItoE ) &  self.tractor[htid].snoop_data_recvd &  (way_found |  self.tractor[htid].alloc_hint ) ) |  ((self.tractor[htid].protocol = Protocol__IDIC) &  (self.tractor[htid].iopcode=IDI_Opcode__RdOwnNoData | self.tractor[htid].iopcode=IDI_Opcode__CLFlush | self.tractor[htid].iopcode=IDI_Opcode__CLFlush_OPT | self.tractor[htid].iopcode=IDI_Opcode__CLWB ) &  self.tractor[htid].snoop_data_recvd &  (way_found |  self.tractor[htid].alloc_hint ) ) |  ((self.tractor[htid].protocol = Protocol__IDIC) &  (self.tractor[htid].iopcode=IDI_Opcode__RdCurr_ns ) &  self.tractor[htid].snoop_data_recvd &  self.tractor[htid].wb_recvd &  (way_found |  self.tractor[htid].alloc_hint ) ) |  (self.tractor[htid].mfs_lookup_done &  self.tractor[htid].mfs_hit &  (self.tractor[htid].mfs_state=MFSState__E | self.tractor[htid].mfs_state=MFSState__M ) &  self.tractor[htid].snoop_data_recvd ) |  (self.tractor[htid].mfs_lookup_done &  self.tractor[htid].mfs_hit &  (self.tractor[htid].mfs_state = MFSState__M) &  HBo__request_with_goM_intention(self, htid) ) ) then
         self.tractor[htid].mfsUpdateNeeded := True;
       endif;
       if (!(self.tractor[htid].mfsUpdateNeeded) &  self.tractor[htid].mem_op_assigned &  (self.tractor[htid].mem_op_init = Mem_Op__Write_E) ) then
@@ -7653,13 +7788,105 @@ begin
     undefine self.pkts[self.count];
 end;
 
-procedure CChannel__1__reset(var self: CChannel__1);
+procedure UChannel__2__reset(var self: UChannel__2);
 begin
     self.count := 0;
     undefine self.pkts;
 end;
 
-function CChannel__1__pop(var self: CChannel__1; index: Index__1):CXMPacket;
+function UChannel__2__pop(var self: UChannel__2; index: Index__1):UPIPacket;
+var
+  pkt: UPIPacket;
+begin
+    pkt := self.pkts[index];
+    return pkt;
+end;
+
+procedure UChannel__2__left_shift(var self: UChannel__2; index: Index__1);
+begin
+    for i:= index to (self.count - 1)-1 do
+        self.pkts[i] := self.pkts[(i + 1)];
+    endfor;
+    self.count := (self.count - 1);
+    undefine self.pkts[self.count];
+end;
+
+procedure UChannel__3__reset(var self: UChannel__3);
+begin
+    self.count := 0;
+    undefine self.pkts;
+end;
+
+function UChannel__3__pop(var self: UChannel__3; index: Index__1):UPIPacket;
+var
+  pkt: UPIPacket;
+begin
+    pkt := self.pkts[index];
+    return pkt;
+end;
+
+procedure UChannel__3__left_shift(var self: UChannel__3; index: Index__1);
+begin
+    for i:= index to (self.count - 1)-1 do
+        self.pkts[i] := self.pkts[(i + 1)];
+    endfor;
+    self.count := (self.count - 1);
+    undefine self.pkts[self.count];
+end;
+
+procedure UChannel__4__reset(var self: UChannel__4);
+begin
+    self.count := 0;
+    undefine self.pkts;
+end;
+
+function UChannel__4__pop(var self: UChannel__4; index: Index__1):UPIPacket;
+var
+  pkt: UPIPacket;
+begin
+    pkt := self.pkts[index];
+    return pkt;
+end;
+
+procedure UChannel__4__left_shift(var self: UChannel__4; index: Index__1);
+begin
+    for i:= index to (self.count - 1)-1 do
+        self.pkts[i] := self.pkts[(i + 1)];
+    endfor;
+    self.count := (self.count - 1);
+    undefine self.pkts[self.count];
+end;
+
+procedure UChannel__5__reset(var self: UChannel__5);
+begin
+    self.count := 0;
+    undefine self.pkts;
+end;
+
+function UChannel__5__pop(var self: UChannel__5; index: Index__1):UPIPacket;
+var
+  pkt: UPIPacket;
+begin
+    pkt := self.pkts[index];
+    return pkt;
+end;
+
+procedure UChannel__5__left_shift(var self: UChannel__5; index: Index__1);
+begin
+    for i:= index to (self.count - 1)-1 do
+        self.pkts[i] := self.pkts[(i + 1)];
+    endfor;
+    self.count := (self.count - 1);
+    undefine self.pkts[self.count];
+end;
+
+procedure CChannel__5__reset(var self: CChannel__5);
+begin
+    self.count := 0;
+    undefine self.pkts;
+end;
+
+function CChannel__5__pop(var self: CChannel__5; index: Index__1):CXMPacket;
 var
   pkt: CXMPacket;
 begin
@@ -7667,7 +7894,7 @@ begin
     return pkt;
 end;
 
-procedure CChannel__1__left_shift(var self: CChannel__1; index: Index__1);
+procedure CChannel__5__left_shift(var self: CChannel__5; index: Index__1);
 begin
     for i:= index to (self.count - 1)-1 do
         self.pkts[i] := self.pkts[(i + 1)];
@@ -7679,11 +7906,11 @@ end;
 procedure ULink__reset(var self: ULink);
 begin
     UChannel__1__reset(self.CAReq);
-    UChannel__1__reset(self.CAWb);
-    UChannel__1__reset(self.CAResp);
-    UChannel__1__reset(self.HASnp);
-    UChannel__1__reset(self.HAResp);
-    CChannel__1__reset(self.MCResp);
+    UChannel__2__reset(self.CAWb);
+    UChannel__4__reset(self.CAResp);
+    UChannel__3__reset(self.HASnp);
+    UChannel__5__reset(self.HAResp);
+    CChannel__5__reset(self.MCResp);
 end;
 
 procedure ULink__send_CAReq_packet(var self: ULink; index: CHANNEL_SIZE);
@@ -7711,11 +7938,11 @@ begin
     if isundefined(guard_failed) then
     Guard((index < self.CAWb.count));
     if isundefined(guard_failed) then
-      packet := UChannel__1__pop(self.CAWb, index);
+      packet := UChannel__2__pop(self.CAWb, index);
       self.to_ha := packet;
       self.to_ha__update:=True;
       rbw_port_transfer();
-    UChannel__1__left_shift(self.CAWb, index);
+    UChannel__2__left_shift(self.CAWb, index);
     endif;
     endif;
 end;
@@ -7728,11 +7955,11 @@ begin
     if isundefined(guard_failed) then
     Guard((index < self.CAResp.count));
     if isundefined(guard_failed) then
-      packet := UChannel__1__pop(self.CAResp, index);
+      packet := UChannel__4__pop(self.CAResp, index);
       self.to_ha := packet;
       self.to_ha__update:=True;
       rbw_port_transfer();
-    UChannel__1__left_shift(self.CAResp, index);
+    UChannel__4__left_shift(self.CAResp, index);
     endif;
     endif;
 end;
@@ -7762,11 +7989,11 @@ begin
     if isundefined(guard_failed) then
     Guard((!((self.HAResp.pkts[index].opcode = UPI_Opcode__FwdCnfltO)) |  ULink__no_pending_Cmpl(self, index) ));
     if isundefined(guard_failed) then
-      packet := UChannel__1__pop(self.HAResp, index);
+      packet := UChannel__5__pop(self.HAResp, index);
       self.to_ca := packet;
       self.to_ca__update:=True;
       rbw_port_transfer();
-    UChannel__1__left_shift(self.HAResp, index);
+    UChannel__5__left_shift(self.HAResp, index);
     endif;
     endif;
     endif;
@@ -7781,14 +8008,14 @@ begin
     if isundefined(guard_failed) then
     Guard((index < self.MCResp.count));
     if isundefined(guard_failed) then
-      packet := CChannel__1__pop(self.MCResp, index);
+      packet := CChannel__5__pop(self.MCResp, index);
       idiPacket.opcode:=IDI_Opcode__Data;
       idiPacket.rtid:=packet.rtid;
       idiPacket.data:=packet.data;
       self.to_core := idiPacket;
       self.to_core__update:=True;
       rbw_port_transfer();
-    CChannel__1__left_shift(self.MCResp, index);
+    CChannel__5__left_shift(self.MCResp, index);
     endif;
     endif;
 end;
@@ -7801,11 +8028,11 @@ begin
     if isundefined(guard_failed) then
     Guard((index < self.HASnp.count));
     if isundefined(guard_failed) then
-      packet := UChannel__1__pop(self.HASnp, index);
+      packet := UChannel__3__pop(self.HASnp, index);
       self.to_ca := packet;
       self.to_ca__update:=True;
       rbw_port_transfer();
-    UChannel__1__left_shift(self.HASnp, index);
+    UChannel__3__left_shift(self.HASnp, index);
     endif;
     endif;
 end;
@@ -8248,13 +8475,13 @@ begin
     endif;
 end;
 
-procedure Channel__1__reset(var self: Channel__1);
+procedure Channel__5__reset(var self: Channel__5);
 begin
     self.count := 0;
     undefine self.pkts;
 end;
 
-function Channel__1__pop(var self: Channel__1; index: Index__1):AgentPacket;
+function Channel__5__pop(var self: Channel__5; index: Index__1):AgentPacket;
 var
   pkt: AgentPacket;
 begin
@@ -8262,7 +8489,122 @@ begin
     return pkt;
 end;
 
-procedure Channel__1__left_shift(var self: Channel__1; index: Index__1);
+procedure Channel__5__left_shift(var self: Channel__5; index: Index__1);
+begin
+    for i:= index to (self.count - 1)-1 do
+        self.pkts[i] := self.pkts[(i + 1)];
+    endfor;
+    self.count := (self.count - 1);
+    undefine self.pkts[self.count];
+end;
+
+procedure Channel__6__reset(var self: Channel__6);
+begin
+    self.count := 0;
+    undefine self.pkts;
+end;
+
+function Channel__6__pop(var self: Channel__6; index: Index__1):AgentPacket;
+var
+  pkt: AgentPacket;
+begin
+    pkt := self.pkts[index];
+    return pkt;
+end;
+
+procedure Channel__6__left_shift(var self: Channel__6; index: Index__1);
+begin
+    for i:= index to (self.count - 1)-1 do
+        self.pkts[i] := self.pkts[(i + 1)];
+    endfor;
+    self.count := (self.count - 1);
+    undefine self.pkts[self.count];
+end;
+
+procedure Channel__7__reset(var self: Channel__7);
+begin
+    self.count := 0;
+    undefine self.pkts;
+end;
+
+function Channel__7__pop(var self: Channel__7; index: Index__1):AgentPacket;
+var
+  pkt: AgentPacket;
+begin
+    pkt := self.pkts[index];
+    return pkt;
+end;
+
+procedure Channel__7__left_shift(var self: Channel__7; index: Index__1);
+begin
+    for i:= index to (self.count - 1)-1 do
+        self.pkts[i] := self.pkts[(i + 1)];
+    endfor;
+    self.count := (self.count - 1);
+    undefine self.pkts[self.count];
+end;
+
+procedure Channel__8__reset(var self: Channel__8);
+begin
+    self.count := 0;
+    undefine self.pkts;
+end;
+
+function Channel__8__pop(var self: Channel__8; index: Index__1):AgentPacket;
+var
+  pkt: AgentPacket;
+begin
+    pkt := self.pkts[index];
+    return pkt;
+end;
+
+procedure Channel__8__left_shift(var self: Channel__8; index: Index__1);
+begin
+    for i:= index to (self.count - 1)-1 do
+        self.pkts[i] := self.pkts[(i + 1)];
+    endfor;
+    self.count := (self.count - 1);
+    undefine self.pkts[self.count];
+end;
+
+procedure Channel__9__reset(var self: Channel__9);
+begin
+    self.count := 0;
+    undefine self.pkts;
+end;
+
+function Channel__9__pop(var self: Channel__9; index: Index__1):AgentPacket;
+var
+  pkt: AgentPacket;
+begin
+    pkt := self.pkts[index];
+    return pkt;
+end;
+
+procedure Channel__9__left_shift(var self: Channel__9; index: Index__1);
+begin
+    for i:= index to (self.count - 1)-1 do
+        self.pkts[i] := self.pkts[(i + 1)];
+    endfor;
+    self.count := (self.count - 1);
+    undefine self.pkts[self.count];
+end;
+
+procedure Channel__10__reset(var self: Channel__10);
+begin
+    self.count := 0;
+    undefine self.pkts;
+end;
+
+function Channel__10__pop(var self: Channel__10; index: Index__1):AgentPacket;
+var
+  pkt: AgentPacket;
+begin
+    pkt := self.pkts[index];
+    return pkt;
+end;
+
+procedure Channel__10__left_shift(var self: Channel__10; index: Index__1);
 begin
     for i:= index to (self.count - 1)-1 do
         self.pkts[i] := self.pkts[(i + 1)];
@@ -8273,12 +8615,12 @@ end;
 
 procedure Link__reset(var self: Link; network_id: IDICAgents);
 begin
-    Channel__1__reset(self.A2FReq);
-    Channel__1__reset(self.A2FResp);
-    Channel__1__reset(self.F2AResp);
-    Channel__1__reset(self.F2AData);
-    Channel__1__reset(self.F2AReq);
-    Channel__1__reset(self.A2FData);
+    Channel__5__reset(self.A2FReq);
+    Channel__8__reset(self.A2FResp);
+    Channel__6__reset(self.F2AResp);
+    Channel__7__reset(self.F2AData);
+    Channel__10__reset(self.F2AReq);
+    Channel__9__reset(self.A2FData);
     self.network_id := network_id;
 end;
 
@@ -8290,11 +8632,11 @@ begin
     if isundefined(guard_failed) then
     Guard((index < self.A2FReq.count));
     if isundefined(guard_failed) then
-      packet := Channel__1__pop(self.A2FReq, index);
+      packet := Channel__5__pop(self.A2FReq, index);
       self.to_fabric := packet;
       self.to_fabric__update:=True;
       rbw_port_transfer();
-    Channel__1__left_shift(self.A2FReq, index);
+    Channel__5__left_shift(self.A2FReq, index);
     endif;
     endif;
 end;
@@ -8308,12 +8650,12 @@ begin
     if isundefined(guard_failed) then
     Guard((index < self.F2AResp.count));
     if isundefined(guard_failed) then
-      pkt := Channel__1__pop(self.F2AResp, index);
+      pkt := Channel__6__pop(self.F2AResp, index);
       packet := pkt.packet;
       self.to_agent := packet;
       self.to_agent__update:=True;
       rbw_port_transfer();
-    Channel__1__left_shift(self.F2AResp, index);
+    Channel__6__left_shift(self.F2AResp, index);
     endif;
     endif;
 end;
@@ -8326,11 +8668,11 @@ begin
     if isundefined(guard_failed) then
     Guard((index < self.F2AData.count));
     if isundefined(guard_failed) then
-      pkt := Channel__1__pop(self.F2AData, index);
+      pkt := Channel__7__pop(self.F2AData, index);
       self.to_agent := pkt.packet;
       self.to_agent__update:=True;
       rbw_port_transfer();
-    Channel__1__left_shift(self.F2AData, index);
+    Channel__7__left_shift(self.F2AData, index);
     endif;
     endif;
 end;
@@ -8358,11 +8700,11 @@ begin
     if isundefined(guard_failed) then
     Guard(Link__no_pending_GO(self, self.F2AReq.pkts[index]));
     if isundefined(guard_failed) then
-      pkt := Channel__1__pop(self.F2AReq, index);
+      pkt := Channel__10__pop(self.F2AReq, index);
       self.to_agent := pkt.packet;
       self.to_agent__update:=True;
       rbw_port_transfer();
-    Channel__1__left_shift(self.F2AReq, index);
+    Channel__10__left_shift(self.F2AReq, index);
     endif;
     endif;
     endif;
@@ -8374,10 +8716,10 @@ begin
     if isundefined(guard_failed) then
     Guard((index < self.A2FResp.count));
     if isundefined(guard_failed) then
-      self.to_fabric := Channel__1__pop(self.A2FResp, index);
+      self.to_fabric := Channel__8__pop(self.A2FResp, index);
       self.to_fabric__update:=True;
       rbw_port_transfer();
-    Channel__1__left_shift(self.A2FResp, index);
+    Channel__8__left_shift(self.A2FResp, index);
     endif;
     endif;
 end;
@@ -8388,10 +8730,10 @@ begin
     if isundefined(guard_failed) then
     Guard((index < self.A2FData.count));
     if isundefined(guard_failed) then
-      self.to_fabric := Channel__1__pop(self.A2FData, index);
+      self.to_fabric := Channel__9__pop(self.A2FData, index);
       self.to_fabric__update:=True;
       rbw_port_transfer();
-    Channel__1__left_shift(self.A2FData, index);
+    Channel__9__left_shift(self.A2FData, index);
     endif;
     endif;
 end;
@@ -8679,7 +9021,7 @@ begin
     if isundefined(guard_failed) then
     Guard((mufasa_mode |  alloc_hint ));
     if isundefined(guard_failed) then
-    Guard((opcode=UPI_Opcode__RdCode | opcode=UPI_Opcode__InvItoE | opcode=UPI_Opcode__WbMtoI ));
+    Guard((opcode=UPI_Opcode__RdDataMig | opcode=UPI_Opcode__RdInv | opcode=UPI_Opcode__WbMtoI ));
     if isundefined(guard_failed) then
     CA__send_new_request(self.UPIAgent[idx], address, opcode, alloc_hint);
     if isundefined(guard_failed) then

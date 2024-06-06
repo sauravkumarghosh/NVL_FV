@@ -1,3 +1,4 @@
+import sys
 import rainbow as rbw
 # from rainbow.interactive import Interact
 from rainbow.ast.murphi_conv import write_murphi
@@ -310,15 +311,17 @@ class NVL(rbw.Model):
         # rbw.Guard(opcode in [UPI_Opcode.RdData, UPI_Opcode.WbMtoI]
         #           and not alloc_hint)
         # rbw.Guard(opcode in [UPI_Opcode.RdCode, UPI_Opcode.RdData, UPI_Opcode.RdDataMig, UPI_Opcode.RdInvOwn, UPI_Opcode.InvXtoI, UPI_Opcode.InvItoE, UPI_Opcode.RdInv, UPI_Opcode.InvItoM, UPI_Opcode.RdCur, UPI_Opcode.WbMtoI, UPI_Opcode.WbMtoS, UPI_Opcode.WbMtoE, UPI_Opcode.WbEtoI])
+        # rbw.Guard(opcode in [UPI_Opcode.RdDataMig, UPI_Opcode.InvItoE, UPI_Opcode.WbMtoI])
+        rbw.Guard(opcode in [UPI_Opcode.RdDataMig, UPI_Opcode.RdInv, UPI_Opcode.WbMtoI])
         # rbw.Guard(opcode in [UPI_Opcode.RdDataMig, UPI_Opcode.RdInvOwn, UPI_Opcode.RdCur, UPI_Opcode.WbMtoI, UPI_Opcode.WbMtoS, UPI_Opcode.WbMtoE, UPI_Opcode.WbEtoI])
         # rbw.Guard(opcode in [UPI_Opcode.RdDataMig, UPI_Opcode.RdInvOwn, UPI_Opcode.RdCur, UPI_Opcode.WbMtoI])
-        rbw.Guard(opcode in [UPI_Opcode.RdCode, UPI_Opcode.InvItoE, UPI_Opcode.WbMtoI])
+        # rbw.Guard(opcode in [UPI_Opcode.RdDataMig, UPI_Opcode.RdInvOwn, UPI_Opcode.WbMtoI])
         # rbw.Guard(opcode in [UPI_Opcode.RdDataMig, UPI_Opcode.RdInvOwn, UPI_Opcode.RdCur])
         # rbw.Guard(opcode in [UPI_Opcode.InvItoE, UPI_Opcode.WbMtoE])
         # rbw.Guard(opcode in [UPI_Opcode.RdData])
         self.UPIAgent[idx].send_new_request(address, opcode, alloc_hint)
 
-    @rbw.Rule(agent=cfg.UPIAgents, index=cfg.CHANNEL_SIZE)  
+    @rbw.Rule(agent=cfg.UPIAgents, index=cfg.CHANNEL_SIZE)
     def ulink_send_CAReq_packet(self, agent:cfg.UPIAgents, index:cfg.CHANNEL_SIZE):
         self.santa[agent].send_CAReq_packet(index)
 
@@ -651,3 +654,4 @@ if __name__ == "__main__":
     # interact = Interact(NVL)
     # interact.cmdloop()
     write_murphi(NVL)
+    

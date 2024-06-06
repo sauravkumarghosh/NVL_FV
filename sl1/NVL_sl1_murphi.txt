@@ -45,9 +45,9 @@ Memory usage:
 
 Progress Report:
 
-	10000 states explored in 516.58s, with 4220299 rules fired and 1836 states in the queue.
-	20000 states explored in 1100.45s, with 9196396 rules fired and 2212 states in the queue.
-	30000 states explored in 1836.26s, with 15467089 rules fired and 83 states in the queue.
+	10000 states explored in 518.12s, with 4220299 rules fired and 1836 states in the queue.
+	20000 states explored in 1104.09s, with 9196396 rules fired and 2212 states in the queue.
+	30000 states explored in 1842.80s, with 15467089 rules fired and 83 states in the queue.
 
 ==========================================================================
 
@@ -57,7 +57,7 @@ Status:
 
 State Space Explored:
 
-	30186 states, 15606162 rules fired in 1852.58s.
+	30186 states, 15606162 rules fired in 1859.19s.
 
 Omission Probabilities (caused by Hash Compaction):
 

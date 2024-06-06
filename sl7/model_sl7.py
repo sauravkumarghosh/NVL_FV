@@ -312,7 +312,7 @@ class NVL(rbw.Model):
         #           and not alloc_hint)
         # rbw.Guard(opcode in [UPI_Opcode.RdCode, UPI_Opcode.RdData, UPI_Opcode.RdDataMig, UPI_Opcode.RdInvOwn, UPI_Opcode.InvXtoI, UPI_Opcode.InvItoE, UPI_Opcode.RdInv, UPI_Opcode.InvItoM, UPI_Opcode.RdCur, UPI_Opcode.WbMtoI, UPI_Opcode.WbMtoS, UPI_Opcode.WbMtoE, UPI_Opcode.WbEtoI])
         # rbw.Guard(opcode in [UPI_Opcode.RdDataMig, UPI_Opcode.InvItoE, UPI_Opcode.WbMtoI])
-        rbw.Guard(opcode in [UPI_Opcode.RdData, UPI_Opcode.InvItoM, UPI_Opcode.WbMtoI])
+        rbw.Guard(opcode in [UPI_Opcode.RdData, UPI_Opcode.RdInvOwn, UPI_Opcode.WbMtoI])
         # rbw.Guard(opcode in [UPI_Opcode.RdDataMig, UPI_Opcode.RdInvOwn, UPI_Opcode.RdCur, UPI_Opcode.WbMtoI, UPI_Opcode.WbMtoS, UPI_Opcode.WbMtoE, UPI_Opcode.WbEtoI])
         # rbw.Guard(opcode in [UPI_Opcode.RdDataMig, UPI_Opcode.RdInvOwn, UPI_Opcode.RdCur, UPI_Opcode.WbMtoI])
         # rbw.Guard(opcode in [UPI_Opcode.RdDataMig, UPI_Opcode.RdInvOwn, UPI_Opcode.WbMtoI])

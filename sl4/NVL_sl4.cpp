@@ -29140,7 +29140,7 @@ bool mu__boolexpr1316;
 }
   if (mu__boolexpr1316) mu__boolexpr1315 = TRUE ;
   else {
-  mu__boolexpr1315 = ((mu_self.mu_tractor[mu_htid].mu_uopcode) == (mu_UPI_Opcode__InvItoM)) ; 
+  mu__boolexpr1315 = ((mu_self.mu_tractor[mu_htid].mu_uopcode) == (mu_UPI_Opcode__InvItoE)) ; 
 }
   mu__boolexpr1314 = (mu__boolexpr1315) ; 
 }
